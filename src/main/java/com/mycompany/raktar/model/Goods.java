@@ -49,4 +49,93 @@ public class Goods {
         this.price = price;
         this.currency = currency;
     }
+
+    public int getArticleNumber() {
+        return articleNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getVendor() {
+        return vendor;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getStock() {
+        return stock + " " + unitOfMeasure;
+    }
+
+    public String getPrice() {
+        return price + " " + currency;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setVendor(String vendor) {
+        this.vendor = vendor;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public void setUnitOfMeasure(String unitOfMeasure) {
+        this.unitOfMeasure = unitOfMeasure;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 59 * hash + this.articleNumber;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Goods other = (Goods) obj;
+        if (this.articleNumber != other.articleNumber) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Termék{" + "Cikkszám: " + articleNumber + 
+               ", Név: " + name + 
+                ", Gyártó: " + vendor + 
+                ", Leírás: " + description + 
+                ", Készlet: " + stock +" " +  unitOfMeasure + 
+                ", Ár: " + price + " " + currency + '}';
+    }
+    
+    
 }

@@ -8,6 +8,7 @@ package com.mycompany.raktar.model;
 import com.mycompany.raktar.model.Goods;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -17,9 +18,54 @@ public class Category {
     private String name;
     private List<Goods> products;
 
+    public Category(String name) {
+        this.name = name;
+    }    
+    
     public Category(String name, List<Goods> products) {
         this.name = name;
         this.products = products;
     } 
+
+    public String getName() {
+        return name;
+    }
+
+    public void setProducts(List<Goods> products) {
+        this.products = products;
+    }
     
+    public void addProduct(Goods product){
+        this.products.add(product);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.name);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Category other = (Category) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        return true;
+    }
+    
+    @Override
+    public String toString() {
+        return "Category{" + "name=" + name + ", products=" + products + '}';
+    }    
 }
