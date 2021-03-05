@@ -11,7 +11,7 @@ public class PrimaryController {
     @FXML
     private void switchToSecondary() throws IOException {
         //App.setRoot("secondary");
-        this.outText.setText("Proba gomb nyomás");
+        this.outText.setText(App.wh.toString());
     }
     
 }
