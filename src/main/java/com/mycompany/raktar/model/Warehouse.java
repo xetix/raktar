@@ -5,7 +5,6 @@
  */
 package com.mycompany.raktar.model;
 
-import com.mycompany.raktar.model.Category;
 import java.util.List;
 
 /**
