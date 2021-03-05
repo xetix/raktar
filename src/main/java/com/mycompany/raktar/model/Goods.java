@@ -6,6 +6,7 @@
 package com.mycompany.raktar.model;
 
 import com.mycompany.raktar.model.Price.Currency;
+import com.mycompany.raktar.model.Stock.UnitOfMeasure;
 
 /**
  *
@@ -18,22 +19,15 @@ public class Goods {
     private String vendor; //Gyártó
     private String description; //Leírás
     
-    private int stock;  //Készlet
-    private String unitOfMeasure; //Mértékegység
-    
+    private Stock stock;  //Készlet
     private Price price; //Ár
-    
-    private enum UnitOfMeasure {
-        db, cm, m, g, kg, csomag
-    }
 
     public Goods(
         int articleNumber, 
         String name, 
         String vendor, 
         String description, 
-        int stock, 
-        String unitOfMeasure, 
+        Stock stock,
         Price price
     ) {
         this.articleNumber = articleNumber;
@@ -41,7 +35,6 @@ public class Goods {
         this.vendor = vendor;
         this.description = description;
         this.stock = stock;
-        this.unitOfMeasure = unitOfMeasure;
         this.price = price;
     }
 
@@ -62,7 +55,7 @@ public class Goods {
     }
 
     public String getStock() {
-        return stock + " " + unitOfMeasure;
+        return stock.toString();
     }
 
     public String getPrice() {
@@ -81,19 +74,13 @@ public class Goods {
         this.description = description;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setStock(int stock, UnitOfMeasure unitOfMeasure) {
+        this.stock.setStock(stock);
+        this.stock.setUnitOfMeasure(unitOfMeasure);
     }
 
-    public void setUnitOfMeasure(String unitOfMeasure) {
-        this.unitOfMeasure = unitOfMeasure;
-    }
-
-    public void setPrice(int price) {
+    public void setPrice(int price, Currency currency) {
         this.price.setPrice(price);
-    }
-
-    public void setCurrency(Currency currency) {
         this.price.setCurrency(currency);
     }
 
@@ -116,10 +103,7 @@ public class Goods {
             return false;
         }
         final Goods other = (Goods) obj;
-        if (this.articleNumber != other.articleNumber) {
-            return false;
-        }
-        return true;
+        return this.articleNumber == other.articleNumber;
     }
 
     @Override
@@ -128,7 +112,7 @@ public class Goods {
                ", Név: " + name + 
                 ", Gyártó: " + vendor + 
                 ", Leírás: " + description + 
-                ", Készlet: " + stock +" " +  unitOfMeasure + 
+                ", Készlet: " + stock + 
                 ", Ár: " + price;
     }
     

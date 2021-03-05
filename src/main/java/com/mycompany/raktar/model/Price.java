@@ -10,19 +10,19 @@ package com.mycompany.raktar.model;
  * @author Kovács Gergő
  */
 public final class Price {
-    private int price;
+    private float price;
     private Currency currency;
     
-    public enum Currency {
+    enum Currency {
         HUF, USD, GBP, EUR, JPY, RUB, CNY
     }
 
-    public Price(int price, Currency currency) {
+    public Price(float price, Currency currency) {
         this.price = price;
         this.currency = currency;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
@@ -30,7 +30,7 @@ public final class Price {
         this.currency = currency;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
