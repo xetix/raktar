@@ -9,7 +9,7 @@ package com.mycompany.raktar.model;
  *
  * @author Kovács Gergő
  */
-public class Stock {
+public final class Stock {
     private int stock;  //Készlet
     private UnitOfMeasure unitOfMeasure; //Mértékegység
     

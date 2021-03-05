@@ -5,8 +5,6 @@
  */
 package com.mycompany.raktar.model;
 
-import com.mycompany.raktar.model.Goods;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,7 +13,7 @@ import java.util.Objects;
  * @author Kovács Gergő
  */
 public class Category {
-    private String name;
+    private final String name;
     private List<Goods> products;
 
     public Category(String name) {
