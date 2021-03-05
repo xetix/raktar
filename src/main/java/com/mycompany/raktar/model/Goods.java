@@ -5,12 +5,14 @@
  */
 package com.mycompany.raktar.model;
 
+import com.mycompany.raktar.model.Price.Currency;
+
 /**
  *
  * @author Kovács Gergő
  */
 public class Goods {
-    private int articleNumber; //Cikkszám
+    private final int articleNumber; //Cikkszám
     
     private String name; //Név
     private String vendor; //Gyártó
@@ -19,12 +21,7 @@ public class Goods {
     private int stock;  //Készlet
     private String unitOfMeasure; //Mértékegység
     
-    private int price; //Ár
-    private Currency currency; //Pénznem
-    
-    private enum Currency {
-        HUF, USD, GBP, EUR, JPY, RUB, CNY
-    }
+    private Price price; //Ár
     
     private enum UnitOfMeasure {
         db, cm, m, g, kg, csomag
@@ -37,8 +34,7 @@ public class Goods {
         String description, 
         int stock, 
         String unitOfMeasure, 
-        int price, 
-        Currency currency
+        Price price
     ) {
         this.articleNumber = articleNumber;
         this.name = name;
@@ -47,7 +43,6 @@ public class Goods {
         this.stock = stock;
         this.unitOfMeasure = unitOfMeasure;
         this.price = price;
-        this.currency = currency;
     }
 
     public int getArticleNumber() {
@@ -71,7 +66,7 @@ public class Goods {
     }
 
     public String getPrice() {
-        return price + " " + currency;
+        return price.toString();
     }
     
     public void setName(String name) {
@@ -95,11 +90,11 @@ public class Goods {
     }
 
     public void setPrice(int price) {
-        this.price = price;
+        this.price.setPrice(price);
     }
 
     public void setCurrency(Currency currency) {
-        this.currency = currency;
+        this.price.setCurrency(currency);
     }
 
     @Override
@@ -134,7 +129,7 @@ public class Goods {
                 ", Gyártó: " + vendor + 
                 ", Leírás: " + description + 
                 ", Készlet: " + stock +" " +  unitOfMeasure + 
-                ", Ár: " + price + " " + currency + '}';
+                ", Ár: " + price;
     }
     
     
