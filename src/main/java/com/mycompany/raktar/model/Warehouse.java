@@ -5,6 +5,7 @@
  */
 package com.mycompany.raktar.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
  * @author Kovács Gergő
  */
 public class Warehouse {
-    private List<Category> categories;
+    private List<Category> categories = new ArrayList<Category>();
 
     public Warehouse() {
     }

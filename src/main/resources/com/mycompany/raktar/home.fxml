@@ -3,15 +3,13 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="590.0" prefWidth="790.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="com.mycompany.raktar.HomeController">
+<AnchorPane id="AnchorPane" prefHeight="590.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.raktar.HomeController">
    <children>
       <BorderPane prefHeight="590.0" prefWidth="790.0">
          <top>
@@ -26,32 +24,23 @@
          </top>
          <center>
             <VBox alignment="TOP_CENTER" prefHeight="174.0" prefWidth="790.0" BorderPane.alignment="TOP_CENTER">
-               <children>
-                  <HBox prefHeight="48.0" prefWidth="790.0">
-                     <children>
-                        <Button minWidth="100.0" mnemonicParsing="false" text="Új kategória">
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </Button>
-                        <Button minWidth="100.0" mnemonicParsing="false" text="Új termék">
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <ScrollPane maxWidth="790.0" prefHeight="398.0" prefWidth="790.0">
-                    <content>
-                      <AnchorPane maxWidth="790.0" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="790.0" />
-                    </content>
-                  </ScrollPane>
-               </children>
                <BorderPane.margin>
                   <Insets top="32.0" />
                </BorderPane.margin>
+               <children>
+                  <Label fx:id="textOut" text="Label" />
+               </children>
             </VBox>
          </center>
+         <bottom>
+            <ToolBar minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+              <items>
+                  <Button fx:id="newCategory" minWidth="100.0" mnemonicParsing="false" onAction="#toNewCategoryScene" text="Új kategória" />
+                  <Button minWidth="100.0" mnemonicParsing="false" onAction="#toNewGoodsScene" text="Új termék" />
+                  <Button mnemonicParsing="false" onAction="#reflashTest" text="Button" />
+              </items>
+            </ToolBar>
+         </bottom>
       </BorderPane>
    </children>
 </AnchorPane>

@@ -17,10 +17,12 @@ public class Category {
     private List<Goods> products;
 
     public Category(String name) {
+        if( name.isEmpty() ) throw new IllegalArgumentException("Nincs megadva a kategória név.");
         this.name = name;
     }    
     
     public Category(String name, List<Goods> products) {
+        if( name.isEmpty() ) throw new IllegalArgumentException("Nincs megadva a kategória név.");
         this.name = name;
         this.products = products;
     } 

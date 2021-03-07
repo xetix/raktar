@@ -5,9 +5,12 @@
  */
 package com.mycompany.raktar;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -15,13 +18,26 @@ import javafx.fxml.Initializable;
  * @author Kovács Gergő
  */
 public class HomeController implements Initializable {
+    @FXML
+    private Label textOut;
+    
+    @FXML
+    private void toNewCategoryScene() throws IOException{
+        App.setRoot("newCategory");
+    }
+    
+    @FXML
+    private void toNewGoodsScene() throws IOException{
+        App.setRoot("newGoods");
+    }
+    
+    @FXML
+    private void reflashTest(){
+        textOut.setText(App.wh.toString());
+    }
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+        this.reflashTest();
+    }
 }
