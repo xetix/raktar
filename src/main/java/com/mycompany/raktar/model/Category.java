@@ -5,6 +5,7 @@
  */
 package com.mycompany.raktar.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,7 +15,7 @@ import java.util.Objects;
  */
 public class Category {
     private final String name;
-    private List<Goods> products;
+    private List<Goods> products = new ArrayList<Goods>();
 
     public Category(String name) {
         if( name.isEmpty() ) throw new IllegalArgumentException("Nincs megadva a kategória név.");
