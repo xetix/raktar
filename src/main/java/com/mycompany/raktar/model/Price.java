@@ -13,7 +13,7 @@ public final class Price {
     private float price;
     private Currency currency;
     
-    enum Currency {
+    public static enum Currency {
         HUF, USD, GBP, EUR, JPY, RUB, CNY
     }
 

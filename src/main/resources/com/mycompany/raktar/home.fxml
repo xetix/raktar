@@ -36,7 +36,7 @@
             <ToolBar minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="800.0" BorderPane.alignment="CENTER">
               <items>
                   <Button fx:id="newCategory" minWidth="100.0" mnemonicParsing="false" onAction="#toNewCategoryScene" text="Új kategória" />
-                  <Button minWidth="100.0" mnemonicParsing="false" onAction="#toNewGoodsScene" text="Új termék" />
+                  <Button fx:id="newGoodsBtn" minWidth="100.0" mnemonicParsing="false" onAction="#toNewGoodsScene" text="Új termék" />
               </items>
             </ToolBar>
          </bottom>

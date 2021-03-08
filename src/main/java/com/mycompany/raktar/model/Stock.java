@@ -13,7 +13,7 @@ public final class Stock {
     private int stock;  //Készlet
     private UnitOfMeasure unitOfMeasure; //Mértékegység
     
-    enum UnitOfMeasure {
+    public static enum UnitOfMeasure {
         db, cm, m, g, kg, csomag
     }
 

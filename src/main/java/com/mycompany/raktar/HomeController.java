@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 /**
@@ -20,6 +21,9 @@ import javafx.scene.control.Label;
 public class HomeController implements Initializable {
     @FXML
     private Label textOut;
+    
+    @FXML
+    private Button newGoodsBtn;
     
     @FXML
     private void toNewCategoryScene() throws IOException{
@@ -35,9 +39,15 @@ public class HomeController implements Initializable {
     private void reflashTest(){
         textOut.setText(App.wh.toString());
     }
+    
+    @FXML
+    private void newGoodsBtnEnabler(){
+        newGoodsBtn.setDisable(( App.wh.getCategories().isEmpty() ));
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        this.newGoodsBtnEnabler();
         this.reflashTest();
     }
 }
