@@ -25,8 +25,8 @@ public class newGoodsController implements Initializable  {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        App.wh.getCategories().forEach(cat -> {
-            catCB.getItems().add(cat.getName());
+        App.wh.getCategories().keySet().forEach(key -> {
+            catCB.getItems().add(key);
         });
         stockCB.getItems().addAll(Arrays.asList(UnitOfMeasure.values()));
         priceCB.getItems().addAll(Arrays.asList(Currency.values()));

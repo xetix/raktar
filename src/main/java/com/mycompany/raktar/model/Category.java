@@ -5,8 +5,7 @@
  */
 package com.mycompany.raktar.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Objects;
 
 /**
@@ -15,14 +14,14 @@ import java.util.Objects;
  */
 public class Category {
     private final String name;
-    private List<Goods> products = new ArrayList<Goods>();
+    private HashMap<String, Goods> products = new HashMap<String, Goods>();
 
     public Category(String name) {
         if( name.isEmpty() ) throw new IllegalArgumentException("Nincs megadva a kategória név.");
         this.name = name;
     }    
     
-    public Category(String name, List<Goods> products) {
+    public Category(String name, HashMap<String, Goods> products) {
         if( name.isEmpty() ) throw new IllegalArgumentException("Nincs megadva a kategória név.");
         this.name = name;
         this.products = products;
@@ -32,12 +31,12 @@ public class Category {
         return name;
     }
 
-    public void setProducts(List<Goods> products) {
+    public void setProducts(HashMap<String, Goods> products) {
         this.products = products;
     }
     
     public void addProduct(Goods product){
-        this.products.add(product);
+        this.products.put( product.getName(), product );
     }
 
     @Override

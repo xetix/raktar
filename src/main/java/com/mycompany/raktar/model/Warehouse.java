@@ -5,37 +5,32 @@
  */
 package com.mycompany.raktar.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 /**
  *
  * @author Kovács Gergő
  */
 public class Warehouse {
-    private List<Category> categories = new ArrayList<Category>();
+    private HashMap<String, Category> categories = new HashMap<String, Category>();
 
     public Warehouse() {
     }
 
-    public Warehouse(List<Category> categories) {
+    public void setCategories(HashMap<String, Category> categories) {
         this.categories = categories;
     }
 
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
-    }
-
-    public List<Category> getCategories() {
+    public HashMap<String, Category> getCategories() {
         return categories;
     }
     
     public void addCategory(Category category) {
-        this.categories.add(category);
+        this.categories.put(category.getName(), category);
     }
     
     public void delCategory(Category category){
-        this.categories.remove(category);
+        this.categories.remove(category.getName());
     }
 
     @Override
