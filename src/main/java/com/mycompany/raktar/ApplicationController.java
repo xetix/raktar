@@ -1,8 +1,10 @@
 package com.mycompany.raktar;
 
 import com.mycompany.raktar.model.Category;
+import com.mycompany.raktar.model.Goods;
 import com.mycompany.raktar.model.Price;
 import com.mycompany.raktar.model.Price.Currency;
+import com.mycompany.raktar.model.Stock;
 import com.mycompany.raktar.model.Stock.UnitOfMeasure;
 import java.io.IOException;
 import java.net.URL;
@@ -43,7 +45,7 @@ public class ApplicationController implements Initializable {
     private TextField newItemStock;
 
     @FXML
-    private ComboBox newItemStockUnitOfMessure;
+    private ComboBox newItemStockUnitOfMeasure;
 
     @FXML
     private TextField newItemPrice;
@@ -66,8 +68,8 @@ public class ApplicationController implements Initializable {
         App.wh.getCategories().keySet().forEach(key -> {
             newItemCategory.getItems().add(key);
         });
-        newItemStockUnitOfMessure.getItems().clear();
-        newItemStockUnitOfMessure.getItems().addAll(Arrays.asList(UnitOfMeasure.values()));
+        newItemStockUnitOfMeasure.getItems().clear();
+        newItemStockUnitOfMeasure.getItems().addAll(Arrays.asList(UnitOfMeasure.values()));
         newItemPriceCurrency.getItems().clear();
         newItemPriceCurrency.getItems().addAll(Arrays.asList(Currency.values()));
         testOut.setText(App.wh.toString());
@@ -88,7 +90,18 @@ public class ApplicationController implements Initializable {
     
     @FXML
     private void addNewItem(){
-        
+        Stock stock = new Stock(Integer.parseInt(this.newItemStock.getText()), this.newItemStockUnitOfMeasure.getValue().toString());
+        Price price = new Price(Float.parseFloat(this.newItemPrice.getText()), this.newItemPriceCurrency.getValue().toString());
+        Goods g = new Goods(
+                this.newItemName.getText(),
+                this.newItemVendor.getText(),
+                this.newItemDescription.getText(),
+                stock,
+                price
+        );
+        App.wh.addGoods(this.newItemCategory.getValue(), g);
+        this.cancelNewItem();
+        this.reflashTest();
     }
     
     @FXML
@@ -99,7 +112,7 @@ public class ApplicationController implements Initializable {
         this.newItemDescription.setText("");
         this.newItemStock.setText("");
         this.newItemPrice.setText("");
-        this.newItemStockUnitOfMessure.setValue("");
+        this.newItemStockUnitOfMeasure.setValue("");
         this.newItemPriceCurrency.setValue("");
     }
 

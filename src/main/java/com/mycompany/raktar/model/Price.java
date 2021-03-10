@@ -17,9 +17,9 @@ public final class Price {
         HUF, USD, GBP, EUR, JPY, RUB, CNY
     }
 
-    public Price(float price, Currency currency) {
+    public Price(float price, String currency) {
         this.price = price;
-        this.currency = currency;
+        this.currency = Currency.valueOf(currency);
     }
 
     public void setPrice(float price) {

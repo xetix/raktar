@@ -17,9 +17,9 @@ public final class Stock {
         db, cm, m, g, kg, csomag
     }
 
-    public Stock(int stock, UnitOfMeasure unitOfMeasure) {
+    public Stock(int stock, String unitOfMeasure) {
         this.stock = stock;
-        this.unitOfMeasure = unitOfMeasure;
+        this.unitOfMeasure = UnitOfMeasure.valueOf(unitOfMeasure);
     }
 
     public int getStock() {

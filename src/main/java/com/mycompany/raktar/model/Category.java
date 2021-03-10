@@ -63,6 +63,6 @@ public class Category {
     
     @Override
     public String toString() {
-        return "Category{" + "name=" + name + ", products=" + products + '}';
+        return "Category{\n" + "name=" + name + ",\nproducts=" + products + "\n}";
     }    
 }

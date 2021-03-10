@@ -32,10 +32,14 @@ public class Warehouse {
     public void delCategory(Category category){
         this.categories.remove(category.getName());
     }
+    
+    public void addGoods(String category, Goods goods){
+        this.categories.get(category).addProduct(goods);
+    }
 
     @Override
     public String toString() {
-        return "Warehouse{" + "categories=" + categories + '}';
+        return "Warehouse{\n" + "categories=" + categories + "\n}";
     }  
     
 }
