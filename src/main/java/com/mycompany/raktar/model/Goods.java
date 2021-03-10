@@ -7,6 +7,7 @@ package com.mycompany.raktar.model;
 
 import com.mycompany.raktar.model.Price.Currency;
 import com.mycompany.raktar.model.Stock.UnitOfMeasure;
+import java.util.Objects;
 
 /**
  *
@@ -72,7 +73,31 @@ public class Goods {
         this.price.setCurrency(currency);
     }
 
-    
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.name);
+        hash = 53 * hash + Objects.hashCode(this.vendor);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Goods other = (Goods) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        return Objects.equals(this.vendor, other.vendor);
+    }    
 
     @Override
     public String toString() {
