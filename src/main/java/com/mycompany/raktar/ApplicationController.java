@@ -95,20 +95,7 @@ public class ApplicationController implements Initializable {
             
             rootItem.getChildren().add(catItem);
         }
-/*
-        TreeItem webItem = new TreeItem("Kategória");
-        webItem.getChildren().add(new TreeItem("HTML  Tutorial"));
-        webItem.getChildren().add(new TreeItem("HTML5 Tutorial"));
-        webItem.getChildren().add(new TreeItem("CSS Tutorial"));
-        webItem.getChildren().add(new TreeItem("SVG Tutorial"));
-        rootItem.getChildren().add(webItem);
-
-        TreeItem javaItem = new TreeItem("Java Tutorials");
-        javaItem.getChildren().add(new TreeItem("Java Language"));
-        javaItem.getChildren().add(new TreeItem("Java Collections"));
-        javaItem.getChildren().add(new TreeItem("Java Concurrency"));
-        rootItem.getChildren().add(javaItem);
-*/
+        
         warehouseTreeView.setRoot(rootItem);
     }
     
