@@ -9,6 +9,8 @@ import com.mycompany.raktar.model.Stock.UnitOfMeasure;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +19,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 
 public class ApplicationController implements Initializable {
 
@@ -63,7 +67,10 @@ public class ApplicationController implements Initializable {
     private Label testOut;
     
     @FXML
-    private void reflashTest(){
+    private TreeView warehouseTreeView;
+    
+    @FXML
+    private void reflash(){
         newItemCategory.getItems().clear();
         App.wh.getCategories().keySet().forEach(key -> {
             newItemCategory.getItems().add(key);
@@ -73,6 +80,36 @@ public class ApplicationController implements Initializable {
         newItemPriceCurrency.getItems().clear();
         newItemPriceCurrency.getItems().addAll(Arrays.asList(Currency.values()));
         testOut.setText(App.wh.toString());
+        this.updateTreeView();
+    }
+    
+    private void updateTreeView(){
+        TreeItem rootItem = new TreeItem("Készlet");
+        
+        for(Map.Entry<String, Category> entry : App.wh.getCategories().entrySet()) {
+            TreeItem catItem = new TreeItem(entry.getKey());
+            
+            for(Map.Entry<String, Goods> e : App.wh.getCategories().get(entry.getKey()).getProducts().entrySet()) {
+                catItem.getChildren().add(new TreeItem(e.getValue().toString()));
+            }            
+            
+            rootItem.getChildren().add(catItem);
+        }
+/*
+        TreeItem webItem = new TreeItem("Kategória");
+        webItem.getChildren().add(new TreeItem("HTML  Tutorial"));
+        webItem.getChildren().add(new TreeItem("HTML5 Tutorial"));
+        webItem.getChildren().add(new TreeItem("CSS Tutorial"));
+        webItem.getChildren().add(new TreeItem("SVG Tutorial"));
+        rootItem.getChildren().add(webItem);
+
+        TreeItem javaItem = new TreeItem("Java Tutorials");
+        javaItem.getChildren().add(new TreeItem("Java Language"));
+        javaItem.getChildren().add(new TreeItem("Java Collections"));
+        javaItem.getChildren().add(new TreeItem("Java Concurrency"));
+        rootItem.getChildren().add(javaItem);
+*/
+        warehouseTreeView.setRoot(rootItem);
     }
     
     @FXML
@@ -80,7 +117,7 @@ public class ApplicationController implements Initializable {
         Category cat = new Category(this.newCatName.getText());
         App.wh.addCategory(cat);
         this.newCatName.setText("");
-        this.reflashTest();
+        this.reflash();
     }
     
     @FXML
@@ -101,7 +138,7 @@ public class ApplicationController implements Initializable {
         );
         App.wh.addGoods(this.newItemCategory.getValue(), g);
         this.cancelNewItem();
-        this.reflashTest();
+        this.reflash();
     }
     
     @FXML
@@ -118,6 +155,6 @@ public class ApplicationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.reflashTest();
+        this.reflash();
     }
 }

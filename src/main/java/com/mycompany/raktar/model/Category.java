@@ -38,6 +38,10 @@ public class Category {
     public void addProduct(Goods product){
         this.products.put( product.getName(), product );
     }
+    
+    public HashMap<String, Goods> getProducts() {
+        return this.products;
+    }
 
     @Override
     public int hashCode() {

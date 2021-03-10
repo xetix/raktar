@@ -101,13 +101,11 @@ public class Goods {
 
     @Override
     public String toString() {
-        return "Termék{\n" + 
-               "\nNév: " + name + 
-               ",\nGyártó: " + vendor + 
-               ",\nLeírás: " + description + 
-               ",\nKészlet: " + stock + 
-               ",\nÁr: " + price +
-               "\n}";
+        return "Név: " + name + "\n" +
+               "\tGyártó: " + vendor + "\n" + 
+               "\tLeírás: " + description + "\n" + 
+               "\tKészlet: " + stock + "\n" +
+               "\tÁr: " + price;
     }
     
     

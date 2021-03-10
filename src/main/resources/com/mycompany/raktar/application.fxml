@@ -11,6 +11,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -132,19 +133,26 @@
                            </content>
                         </TitledPane>
                         <TitledPane animated="false" text="Készlet">
-                          <content>
-                            <AnchorPane>
+                           <content>
+                              <AnchorPane>
                                  <children>
-                                    <Label fx:id="testOut" alignment="CENTER" prefHeight="522.0" prefWidth="394.0" text="Teszt kimenet" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <ScrollPane layoutX="9.600000381469727" layoutY="9.600000381469727" prefHeight="522.0" prefWidth="394.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <content>
+                                          <TreeView fx:id="warehouseTreeView" prefHeight="501.0" prefWidth="373.0" />
+                                       </content>
+                                    </ScrollPane>
                                  </children>
                               </AnchorPane>
-                          </content>
+                           </content>
                         </TitledPane>
                      </panes>
                   </Accordion>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="testOut" alignment="CENTER" prefHeight="522.0" prefWidth="394.0" text="Teszt kimenet" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children></AnchorPane>
         </items>
       </SplitPane>
    </children>
