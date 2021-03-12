@@ -13,7 +13,7 @@ import java.util.Objects;
  *
  * @author Kovács Gergő
  */
-public class Goods {
+public class Goods implements java.io.Serializable{
     private String name; //Név
     private String vendor; //Gyártó
     private String description; //Leírás

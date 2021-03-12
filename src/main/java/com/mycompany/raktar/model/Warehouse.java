@@ -11,7 +11,7 @@ import java.util.HashMap;
  *
  * @author Kovács Gergő
  */
-public class Warehouse {
+public class Warehouse implements java.io.Serializable{
     private HashMap<String, Category> categories = new HashMap<String, Category>();
 
     public Warehouse() {

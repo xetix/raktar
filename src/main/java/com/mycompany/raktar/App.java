@@ -1,20 +1,20 @@
 package com.mycompany.raktar;
 
 import com.mycompany.raktar.model.Warehouse;
+import java.io.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 /**
  * JavaFX App
  */
 public class App extends Application {
+    private static final String serFileName = "warehouse.txt";
     private static Scene scene;
-    static Warehouse wh = new Warehouse();
+    static Warehouse wh = null;
     static Stage s;
 
     @Override
@@ -35,7 +35,25 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+        try (
+            FileInputStream fileIn = new FileInputStream(serFileName);
+            ObjectInputStream in = new ObjectInputStream(fileIn)
+        ){
+            App.wh = (Warehouse) in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            App.wh = new Warehouse();
+        }
         launch();
     }
-
+    
+    public static void serialization(Warehouse wh){
+        try (
+            FileOutputStream fileOut = new FileOutputStream(serFileName); 
+            ObjectOutputStream out = new ObjectOutputStream(fileOut)
+        ){
+            out.writeObject(App.wh);
+        } catch (IOException e) {
+            System.err.print(e.getMessage());
+        }
+    }
 }

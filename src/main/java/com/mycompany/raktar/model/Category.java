@@ -12,7 +12,7 @@ import java.util.Objects;
  *
  * @author Kovács Gergő
  */
-public class Category {
+public class Category implements java.io.Serializable{
     private final String name;
     private HashMap<String, Goods> products = new HashMap<String, Goods>();
 

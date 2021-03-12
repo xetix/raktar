@@ -9,7 +9,6 @@ import com.mycompany.raktar.model.Stock.UnitOfMeasure;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -70,7 +69,7 @@ public class ApplicationController implements Initializable {
     private TreeView warehouseTreeView;
     
     @FXML
-    private void reflash(){
+    private void refresh(){
         newItemCategory.getItems().clear();
         App.wh.getCategories().keySet().forEach(key -> {
             newItemCategory.getItems().add(key);
@@ -80,7 +79,9 @@ public class ApplicationController implements Initializable {
         newItemPriceCurrency.getItems().clear();
         newItemPriceCurrency.getItems().addAll(Arrays.asList(Currency.values()));
         testOut.setText(App.wh.toString());
+        App.serialization(App.wh);
         this.updateTreeView();
+        
     }
     
     private void updateTreeView(){
@@ -104,7 +105,7 @@ public class ApplicationController implements Initializable {
         Category cat = new Category(this.newCatName.getText());
         App.wh.addCategory(cat);
         this.newCatName.setText("");
-        this.reflash();
+        this.refresh();
     }
     
     @FXML
@@ -125,7 +126,7 @@ public class ApplicationController implements Initializable {
         );
         App.wh.addGoods(this.newItemCategory.getValue(), g);
         this.cancelNewItem();
-        this.reflash();
+        this.refresh();
     }
     
     @FXML
@@ -142,6 +143,6 @@ public class ApplicationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.reflash();
+        this.refresh();
     }
 }

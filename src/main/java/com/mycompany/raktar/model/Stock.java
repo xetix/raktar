@@ -9,7 +9,7 @@ package com.mycompany.raktar.model;
  *
  * @author Kovács Gergő
  */
-public final class Stock {
+public final class Stock implements java.io.Serializable{
     private int stock;  //Készlet
     private UnitOfMeasure unitOfMeasure; //Mértékegység
     

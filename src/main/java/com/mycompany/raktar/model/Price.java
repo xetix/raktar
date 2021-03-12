@@ -9,7 +9,7 @@ package com.mycompany.raktar.model;
  *
  * @author Kovács Gergő
  */
-public final class Price {
+public final class Price implements java.io.Serializable{
     private float price;
     private Currency currency;
     
