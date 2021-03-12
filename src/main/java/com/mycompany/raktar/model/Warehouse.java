@@ -5,7 +5,10 @@
  */
 package com.mycompany.raktar.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -35,6 +38,11 @@ public class Warehouse implements java.io.Serializable{
     
     public void addGoods(String category, Goods goods){
         this.categories.get(category).addProduct(goods);
+    }
+    
+    public List<String> getKeys(){
+        List<String> keys = new ArrayList<>(this.categories.keySet());
+        return keys;
     }
 
     @Override

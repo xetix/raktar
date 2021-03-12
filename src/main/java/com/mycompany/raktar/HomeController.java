@@ -46,7 +46,7 @@ public class HomeController implements Initializable {
         this.openNewDialog("delGoods", 250, 170);
     }
     
-    public void editDelGoodsDialog(){
+    public void openEditGoodsDialog(){
         this.openNewDialog("editGoods", 250, 430);
     }
     

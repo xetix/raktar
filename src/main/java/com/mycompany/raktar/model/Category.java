@@ -42,6 +42,11 @@ public class Category implements java.io.Serializable{
     public HashMap<String, Goods> getProducts() {
         return this.products;
     }
+    
+    public String[] getKeys(){
+        String[] a = null;
+        return this.products.keySet().toArray(a);
+    }
 
     @Override
     public int hashCode() {

@@ -13,6 +13,7 @@ import com.mycompany.raktar.model.Stock.UnitOfMeasure;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -54,13 +55,12 @@ public class NewGoodsController implements Initializable {
     
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        newItemCategory.getItems().clear();
-        App.wh.getCategories().keySet().forEach(key -> {
-            newItemCategory.getItems().add(key);
-        });
+        newItemCategory.setItems(FXCollections.observableArrayList(App.wh.getKeys()));
         newItemStockUnitOfMeasure.getItems().clear();
         newItemStockUnitOfMeasure.getItems().addAll(Arrays.asList(UnitOfMeasure.values()));
         newItemPriceCurrency.getItems().clear();

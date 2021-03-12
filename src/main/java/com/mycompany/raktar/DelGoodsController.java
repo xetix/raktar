@@ -7,7 +7,10 @@ package com.mycompany.raktar;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 
 /**
  * FXML Controller class
@@ -15,13 +18,17 @@ import javafx.fxml.Initializable;
  * @author Kovács Gergő
  */
 public class DelGoodsController implements Initializable {
-
+    @FXML
+    private ComboBox<String> itemCategory;
+    
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        itemCategory.setItems(FXCollections.observableArrayList(App.wh.getKeys()));
     }    
     
 }
