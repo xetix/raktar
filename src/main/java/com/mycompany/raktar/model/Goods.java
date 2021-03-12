@@ -101,11 +101,11 @@ public class Goods implements java.io.Serializable{
 
     @Override
     public String toString() {
-        return "Név: " + name + "\n" +
-               "\tGyártó: " + vendor + "\n" + 
-               "\tLeírás: " + description + "\n" + 
-               "\tKészlet: " + stock + "\n" +
-               "\tÁr: " + price + " / " + stock.getUnitOfMeasure();
+        return "Név: " + name + ", " +
+               "Gyártó: " + vendor + ", " + 
+               "Leírás: " + description + ", " + 
+               "Készlet: " + stock + ", " +
+               "Ár: " + price + " / " + stock.getUnitOfMeasure() + ".";
     }
     
     

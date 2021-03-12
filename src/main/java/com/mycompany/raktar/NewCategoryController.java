@@ -27,14 +27,13 @@ public class NewCategoryController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }
     
     @FXML
     private void addButtonOnAction(ActionEvent event){
         Category cat = new Category(this.newCategoryName.getText());
         App.wh.addCategory(cat);
-        this.newCategoryName.setText("");
         App.mainController.refresh();
         exitButtonOnAction(event);
     }

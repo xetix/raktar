@@ -35,10 +35,22 @@ public class HomeController implements Initializable {
     private TreeView warehouseTreeView;
     
     public void openNewCatDialog(){
+        this.openNewDialog("newCategory", 250, 120);
+    }
+    
+    public void openNewGoodsDialog(){
+        this.openNewDialog("newGoods", 250, 390);
+    }
+    
+    public void openDelGoodsDialog(){
+        this.openNewDialog("delGoods", 250, 170);
+    }
+    
+    private void openNewDialog(String name, int width, int height){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("newCategory.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 200, 120);
+            fxmlLoader.setLocation(getClass().getResource(name+".fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), width, height);
             Stage addCatScene = new Stage();
             addCatScene.setScene(scene);
             addCatScene.initModality(Modality.WINDOW_MODAL);
