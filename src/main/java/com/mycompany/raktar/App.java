@@ -15,10 +15,12 @@ import java.io.IOException;
 public class App extends Application {
     private static Scene scene;
     static Warehouse wh = new Warehouse();
+    static Stage s;
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(final Stage stage) throws IOException {
         scene = new Scene(loadFXML("application"));
+        s = stage;
         stage.setScene(scene);
         stage.show();
     }
