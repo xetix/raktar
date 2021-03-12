@@ -76,12 +76,12 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
                <children>
-                  <Button mnemonicParsing="false" onAction="#exitButtonOnAction" text="Mégsem">
+                  <Button mnemonicParsing="false" text="Mégsem">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#addButtonOnAction" text="Mentés" />
+                  <Button mnemonicParsing="false" text="Mentés" />
                </children>
             </HBox>
          </children>
