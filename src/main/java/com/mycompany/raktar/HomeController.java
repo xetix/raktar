@@ -46,6 +46,10 @@ public class HomeController implements Initializable {
         this.openNewDialog("delGoods", 250, 170);
     }
     
+    public void editDelGoodsDialog(){
+        this.openNewDialog("editGoods", 250, 430);
+    }
+    
     private void openNewDialog(String name, int width, int height){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
