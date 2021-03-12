@@ -2,6 +2,7 @@ package com.mycompany.raktar;
 
 import com.mycompany.raktar.model.Warehouse;
 import java.io.*;
+import java.lang.ModuleLayer.Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,10 +17,11 @@ public class App extends Application {
     private static Scene scene;
     static Warehouse wh = null;
     static Stage s;
+    static HomeController mainController = null;
 
     @Override
     public void start(final Stage stage) throws IOException {
-        scene = new Scene(loadFXML("application"));
+        scene = new Scene(loadFXML("home"));
         s = stage;
         stage.setScene(scene);
         stage.show();

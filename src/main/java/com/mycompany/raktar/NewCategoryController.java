@@ -35,6 +35,7 @@ public class NewCategoryController implements Initializable {
         Category cat = new Category(this.newCategoryName.getText());
         App.wh.addCategory(cat);
         this.newCategoryName.setText("");
+        App.mainController.refresh();
         exitButtonOnAction(event);
     }
     

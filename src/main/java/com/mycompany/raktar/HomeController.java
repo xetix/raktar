@@ -66,11 +66,17 @@ public class HomeController implements Initializable {
         warehouseTreeView.setRoot(rootItem);
     }
     
+    public void refresh(){
+        App.serialization(App.wh);
+        this.updateTreeView();
+    }
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        App.mainController = this;
         this.updateTreeView();
     }    
     

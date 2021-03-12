@@ -105,7 +105,7 @@ public class Goods implements java.io.Serializable{
                "\tGyártó: " + vendor + "\n" + 
                "\tLeírás: " + description + "\n" + 
                "\tKészlet: " + stock + "\n" +
-               "\tÁr: " + price;
+               "\tÁr: " + price + " / " + stock.getUnitOfMeasure();
     }
     
     
