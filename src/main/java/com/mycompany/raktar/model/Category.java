@@ -5,7 +5,9 @@
  */
 package com.mycompany.raktar.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -43,9 +45,13 @@ public class Category implements java.io.Serializable{
         return this.products;
     }
     
-    public String[] getKeys(){
-        String[] a = null;
-        return this.products.keySet().toArray(a);
+    public List<String> getKeys(){
+        List<String> keys = new ArrayList<>(this.products.keySet());
+        return keys;
+    }
+    
+    public void delProduct(String name){
+        this.products.remove(name);
     }
 
     @Override
