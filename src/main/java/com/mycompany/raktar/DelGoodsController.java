@@ -37,13 +37,13 @@ public class DelGoodsController implements Initializable {
     
     @FXML
     private void selectedCategory(ActionEvent event){
-        itemName.setItems(FXCollections.observableArrayList(App.wh.getCategories().get(itemCategory.getValue()).getKeys()));
+        itemName.setItems(FXCollections.observableArrayList(App.wh.getCategory(itemCategory.getValue()).getKeys()));
         itemName.setDisable(false);        
     }
     
     @FXML
     private void del(ActionEvent event){
-        App.wh.getCategories().get(itemCategory.getValue()).delProduct(itemName.getValue());
+        App.wh.getCategory(itemCategory.getValue()).delProduct(itemName.getValue());
         App.mainController.refresh();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }

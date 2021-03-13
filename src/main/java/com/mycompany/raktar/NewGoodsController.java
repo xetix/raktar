@@ -61,9 +61,7 @@ public class NewGoodsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         newItemCategory.setItems(FXCollections.observableArrayList(App.wh.getKeys()));
-        newItemStockUnitOfMeasure.getItems().clear();
         newItemStockUnitOfMeasure.getItems().addAll(Arrays.asList(UnitOfMeasure.values()));
-        newItemPriceCurrency.getItems().clear();
         newItemPriceCurrency.getItems().addAll(Arrays.asList(Currency.values()));
     }    
 

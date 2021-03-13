@@ -53,6 +53,10 @@ public class Category implements java.io.Serializable{
     public void delProduct(String name){
         this.products.remove(name);
     }
+    
+    public Goods getProduct(String name){
+        return this.products.get(name);
+    }
 
     @Override
     public int hashCode() {

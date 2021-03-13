@@ -44,6 +44,10 @@ public class Warehouse implements java.io.Serializable{
         List<String> keys = new ArrayList<>(this.categories.keySet());
         return keys;
     }
+    
+    public Category getCategory(String name){
+        return this.categories.get(name);
+    }
 
     @Override
     public String toString() {
