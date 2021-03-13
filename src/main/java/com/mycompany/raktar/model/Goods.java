@@ -47,12 +47,12 @@ public class Goods implements java.io.Serializable{
         return description;
     }
 
-    public String getStock() {
-        return stock.toString();
+    public Stock getStock() {
+        return stock;
     }
 
-    public String getPrice() {
-        return price.toString();
+    public Price getPrice() {
+        return price;
     }
     
     public void setVendor(String vendor) {
