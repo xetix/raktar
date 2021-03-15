@@ -5,16 +5,14 @@
  */
 package com.mycompany.raktar.model;
 
-import com.mycompany.raktar.model.Price.Currency;
-import com.mycompany.raktar.model.Stock.UnitOfMeasure;
 import java.util.Objects;
 
 /**
  *
  * @author Kovács Gergő
  */
-public class Goods implements java.io.Serializable{
-    private String name; //Név
+public final class Goods implements java.io.Serializable{
+    private final String name; //Név
     private String vendor; //Gyártó
     private String description; //Leírás
     
@@ -29,10 +27,10 @@ public class Goods implements java.io.Serializable{
         Price price
     ) {
         this.name = name;
-        this.vendor = vendor;
-        this.description = description;
-        this.stock = stock;
-        this.price = price;
+        this.setVendor(vendor);
+        this.setDescription(description);
+        this.setStock(stock);
+        this.setPrice(price);
     }
 
     public String getName() {
@@ -63,14 +61,12 @@ public class Goods implements java.io.Serializable{
         this.description = description;
     }
 
-    public void setStock(int stock, UnitOfMeasure unitOfMeasure) {
-        this.stock.setStock(stock);
-        this.stock.setUnitOfMeasure(unitOfMeasure);
+    public void setStock(Stock stock) {
+        this.stock = stock;
     }
 
-    public void setPrice(int price, Currency currency) {
-        this.price.setPrice(price);
-        this.price.setCurrency(currency);
+    public void setPrice(Price price) {
+        this.price = price;
     }
 
     @Override
@@ -106,7 +102,6 @@ public class Goods implements java.io.Serializable{
                "Leírás: " + description + ", " + 
                "Készlet: " + stock + ", " +
                "Ár: " + price + " / " + stock.getUnitOfMeasure() + ".";
-    }
-    
+    }   
     
 }

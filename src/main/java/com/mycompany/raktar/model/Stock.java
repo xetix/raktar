@@ -18,8 +18,8 @@ public final class Stock implements java.io.Serializable{
     }
 
     public Stock(int stock, String unitOfMeasure) {
-        this.stock = stock;
-        this.unitOfMeasure = UnitOfMeasure.valueOf(unitOfMeasure);
+        this.setStock(stock);
+        this.setUnitOfMeasure(unitOfMeasure);
     }
 
     public int getStock() {
@@ -31,11 +31,16 @@ public final class Stock implements java.io.Serializable{
     }
 
     public void setStock(int stock) {
+        if(stock<0) throw new IllegalArgumentException("A készlet nem lehet negatív!");
         this.stock = stock;
     }
 
-    public void setUnitOfMeasure(UnitOfMeasure unitOfMeasure) {
-        this.unitOfMeasure = unitOfMeasure;
+    public void setUnitOfMeasure(String unitOfMeasure) {
+        try{
+            this.unitOfMeasure = UnitOfMeasure.valueOf(unitOfMeasure);
+        }catch( Exception e ){
+            throw new IllegalArgumentException("Nem megfelelő mértékegység!");
+        }
     }
 
     @Override

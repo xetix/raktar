@@ -84,4 +84,5 @@ public class Category implements java.io.Serializable{
     public String toString() {
         return "Category{\n" + "name=" + name + ",\nproducts=" + products + "\n}";
     }    
+    
 }

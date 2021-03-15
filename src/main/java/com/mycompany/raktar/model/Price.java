@@ -18,16 +18,21 @@ public final class Price implements java.io.Serializable{
     }
 
     public Price(float price, String currency) {
-        this.price = price;
-        this.currency = Currency.valueOf(currency);
+        this.setPrice(price);
+        this.setCurrency(currency);
     }
 
     public void setPrice(float price) {
+        if(price<0) throw new IllegalArgumentException("Az ár nem lehet negatív!");
         this.price = price;
     }
 
-    public void setCurrency(Currency currency) {
-        this.currency = currency;
+    public void setCurrency(String currency) {
+        try{
+            this.currency = Currency.valueOf(currency);
+        }catch( Exception e ){
+            throw new IllegalArgumentException("Nem megfelelő pénznem!");
+        }
     }
 
     public float getPrice() {
