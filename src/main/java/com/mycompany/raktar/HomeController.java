@@ -38,6 +38,10 @@ public class HomeController implements Initializable {
         this.openNewDialog("newCategory", 250, 120);
     }
     
+    public void openDelCatDialog(){
+        this.openNewDialog("delCategory", 250, 120);
+    }
+    
     public void openNewGoodsDialog(){
         this.openNewDialog("newGoods", 250, 390);
     }
