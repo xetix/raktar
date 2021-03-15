@@ -67,18 +67,22 @@ public class NewGoodsController implements Initializable {
 
     @FXML
     private void addButtonOnAction(ActionEvent event){
-        Stock stock = new Stock(Integer.parseInt(this.newItemStock.getText()), this.newItemStockUnitOfMeasure.getValue().toString());
-        Price price = new Price(Float.parseFloat(this.newItemPrice.getText()), this.newItemPriceCurrency.getValue().toString());
-        Goods g = new Goods(
-                this.newItemName.getText(),
-                this.newItemVendor.getText(),
-                this.newItemDescription.getText(),
-                stock,
-                price
-        );
-        App.wh.addGoods(this.newItemCategory.getValue(), g);
-        App.mainController.refresh();
-        exitButtonOnAction(event);
+        try{
+            Stock stock = new Stock(Integer.parseInt(this.newItemStock.getText()), this.newItemStockUnitOfMeasure.getValue().toString());
+            Price price = new Price(Float.parseFloat(this.newItemPrice.getText()), this.newItemPriceCurrency.getValue().toString());
+            Goods g = new Goods(
+                    this.newItemName.getText(),
+                    this.newItemVendor.getText(),
+                    this.newItemDescription.getText(),
+                    stock,
+                    price
+            );
+            App.wh.addGoods(this.newItemCategory.getValue(), g);
+            App.mainController.refresh();
+            exitButtonOnAction(event);
+        }catch(IllegalArgumentException | NullPointerException e){
+            App.mainController.alert("Hiba", e.getMessage());
+        }
     }
     
     @FXML

@@ -18,7 +18,7 @@
           <Menu mnemonicParsing="false" text="Karegóriák">
             <items>
               <MenuItem fx:id="newCatBtn" mnemonicParsing="false" onAction="#openNewCatDialog" text="Új" />
-                  <MenuItem mnemonicParsing="false" text="Átnevezés" />
+                  <MenuItem mnemonicParsing="false" onAction="#openEditCatDialog" text="Átnevezés" />
                   <MenuItem mnemonicParsing="false" onAction="#openDelCatDialog" text="Törlés" />
             </items>
           </Menu>

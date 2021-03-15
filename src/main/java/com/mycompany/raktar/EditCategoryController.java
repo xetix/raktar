@@ -12,8 +12,11 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
@@ -21,13 +24,16 @@ import javafx.stage.Stage;
  *
  * @author Kovács Gergő
  */
-public class DelCategoryController implements Initializable {
-    
+public class EditCategoryController implements Initializable {
+
     @FXML
-    private Button delBtn;
+    private Button editBtn;
     
     @FXML
     private ComboBox<String> itemCategory;
+    
+    @FXML
+    private TextField newCategoryName;
     
     /**
      * Initializes the controller class.
@@ -36,20 +42,23 @@ public class DelCategoryController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        delBtn.setDisable(true);
+        editBtn.setDisable(true);
         itemCategory.setItems(FXCollections.observableArrayList(App.wh.getKeys()));
-    }
+    }  
     
     @FXML
     public void changeCategory(){
-        delBtn.setDisable(false);
+        editBtn.setDisable(false);
     }
     
     @FXML
-    public void del(ActionEvent event){
+    public void edit(ActionEvent event){
         try{
-            Category cat = App.wh.getCategory(itemCategory.getValue());
-            App.wh.delCategory(cat);
+            Category oldCat = App.wh.getCategory(itemCategory.getValue());
+            Category newCat = new Category(newCategoryName.getText(),oldCat.getProducts());
+            if(App.wh.getCategory(newCat.getName()) != null) throw new IllegalArgumentException("Létező kategória név!");
+            App.wh.delCategory(oldCat);
+            App.wh.addCategory(newCat);
             App.mainController.refresh();
             this.cancel(event);
         }catch(IllegalArgumentException | NullPointerException e){

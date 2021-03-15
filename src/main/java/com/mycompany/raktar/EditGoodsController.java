@@ -14,7 +14,6 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -129,20 +128,24 @@ public class EditGoodsController implements Initializable {
     
     @FXML
     private void edit(ActionEvent event){
-        Goods source = App.wh.getCategory(itemCategory.getValue()).getProduct(itemName.getValue());
-        Stock stock = new Stock(Integer.parseInt(this.stockNewValue.getText()), this.itemStockUnitOfMeasure.getValue().toString());
-        Price price = new Price(Float.parseFloat(this.priceNewValue.getText()), this.itemPriceCurrency.getValue().toString());
-        Goods target = new Goods(
-                this.itemRename.getText(),
-                this.itemVendorRename.getText(),
-                this.itemDescriptionUpdate.getText(),
-                stock,
-                price
-        );
-        App.wh.getCategory(itemCategory.getValue()).delProduct(source.getName());
-        App.wh.getCategory(newItemCategory.getValue()).addProduct(target);
-        App.mainController.refresh();
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        try{
+            Goods source = App.wh.getCategory(itemCategory.getValue()).getProduct(itemName.getValue());
+            Stock stock = new Stock(Integer.parseInt(this.stockNewValue.getText()), this.itemStockUnitOfMeasure.getValue().toString());
+            Price price = new Price(Float.parseFloat(this.priceNewValue.getText()), this.itemPriceCurrency.getValue().toString());
+            Goods target = new Goods(
+                    this.itemRename.getText(),
+                    this.itemVendorRename.getText(),
+                    this.itemDescriptionUpdate.getText(),
+                    stock,
+                    price
+            );
+            App.wh.getCategory(itemCategory.getValue()).delProduct(source.getName());
+            App.wh.getCategory(newItemCategory.getValue()).addProduct(target);
+            App.mainController.refresh();
+            ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        }catch(IllegalArgumentException | NullPointerException e){
+            App.mainController.alert("Hiba", e.getMessage());
+        }
     }
     
     @FXML

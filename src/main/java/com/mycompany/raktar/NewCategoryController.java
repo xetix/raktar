@@ -6,7 +6,6 @@
 package com.mycompany.raktar;
 
 import com.mycompany.raktar.model.Category;
-import java.lang.Thread.State;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -32,10 +31,15 @@ public class NewCategoryController implements Initializable {
     
     @FXML
     private void addButtonOnAction(ActionEvent event){
-        Category cat = new Category(this.newCategoryName.getText());
-        App.wh.addCategory(cat);
-        App.mainController.refresh();
-        exitButtonOnAction(event);
+        try{
+            Category cat = new Category(this.newCategoryName.getText());
+            if(App.wh.getCategory(cat.getName()) != null) throw new IllegalArgumentException("Létező kategória név!");
+            App.wh.addCategory(cat);
+            App.mainController.refresh();
+            exitButtonOnAction(event);
+        }catch(IllegalArgumentException | NullPointerException e){
+            App.mainController.alert("Hiba", e.getMessage());
+        }
     }
     
     @FXML

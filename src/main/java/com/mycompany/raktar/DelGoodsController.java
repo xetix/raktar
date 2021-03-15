@@ -43,9 +43,13 @@ public class DelGoodsController implements Initializable {
     
     @FXML
     private void del(ActionEvent event){
-        App.wh.getCategory(itemCategory.getValue()).delProduct(itemName.getValue());
-        App.mainController.refresh();
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        try{
+            App.wh.getCategory(itemCategory.getValue()).delProduct(itemName.getValue());
+            App.mainController.refresh();
+            ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        }catch(IllegalArgumentException | NullPointerException e){
+            App.mainController.alert("Hiba", e.getMessage());
+        }
     }
     
     @FXML

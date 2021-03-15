@@ -5,16 +5,14 @@
  */
 package com.mycompany.raktar;
 
-import com.mycompany.raktar.model.Category;
-import com.mycompany.raktar.model.Goods;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
@@ -36,6 +34,10 @@ public class HomeController implements Initializable {
     
     public void openNewCatDialog(){
         this.openNewDialog("newCategory", 250, 120);
+    }
+    
+    public void openEditCatDialog(){
+        this.openNewDialog("editCategory", 250, 160);
     }
     
     public void openDelCatDialog(){
@@ -73,15 +75,15 @@ public class HomeController implements Initializable {
     public void updateTreeView(){
         TreeItem rootItem = new TreeItem("Készlet");
         
-        for(Map.Entry<String, Category> entry : App.wh.getCategories().entrySet()) {
+        App.wh.getCategories().entrySet().stream().map(entry -> {
             TreeItem catItem = new TreeItem(entry.getKey());
-            
-            for(Map.Entry<String, Goods> e : App.wh.getCategories().get(entry.getKey()).getProducts().entrySet()) {
+            App.wh.getCategories().get(entry.getKey()).getProducts().entrySet().forEach(e -> {
                 catItem.getChildren().add(new TreeItem(e.getValue().toString()));
-            }            
-            
+            });
+            return catItem;
+        }).forEachOrdered(catItem -> {
             rootItem.getChildren().add(catItem);
-        }
+        });
         
         warehouseTreeView.setRoot(rootItem);
     }
@@ -93,11 +95,22 @@ public class HomeController implements Initializable {
     
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         App.mainController = this;
         this.updateTreeView();
-    }    
+    } 
+    
+    void alert(String title, String msg){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(msg);
+
+        alert.showAndWait();
+    }
     
 }
