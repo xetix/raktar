@@ -143,7 +143,7 @@ public class EditGoodsController implements Initializable {
             App.wh.getCategory(newItemCategory.getValue()).addProduct(target);
             App.mainController.refresh();
             ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
-        }catch(IllegalArgumentException | NullPointerException e){
+        }catch(Exception e){
             App.mainController.alert("Hiba", e.getMessage());
         }
     }

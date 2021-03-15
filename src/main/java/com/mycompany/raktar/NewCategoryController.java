@@ -37,7 +37,7 @@ public class NewCategoryController implements Initializable {
             App.wh.addCategory(cat);
             App.mainController.refresh();
             exitButtonOnAction(event);
-        }catch(IllegalArgumentException | NullPointerException e){
+        }catch(Exception e){
             App.mainController.alert("Hiba", e.getMessage());
         }
     }

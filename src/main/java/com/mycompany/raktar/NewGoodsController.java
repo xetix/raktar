@@ -80,7 +80,7 @@ public class NewGoodsController implements Initializable {
             App.wh.addGoods(this.newItemCategory.getValue(), g);
             App.mainController.refresh();
             exitButtonOnAction(event);
-        }catch(IllegalArgumentException | NullPointerException e){
+        }catch(Exception e){
             App.mainController.alert("Hiba", e.getMessage());
         }
     }

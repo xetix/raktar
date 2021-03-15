@@ -61,7 +61,7 @@ public class EditCategoryController implements Initializable {
             App.wh.addCategory(newCat);
             App.mainController.refresh();
             this.cancel(event);
-        }catch(IllegalArgumentException | NullPointerException e){
+        }catch(Exception e){
             App.mainController.alert("Hiba", e.getMessage());
         }
     }

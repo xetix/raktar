@@ -52,7 +52,7 @@ public class DelCategoryController implements Initializable {
             App.wh.delCategory(cat);
             App.mainController.refresh();
             this.cancel(event);
-        }catch(IllegalArgumentException | NullPointerException e){
+        }catch(Exception e){
             App.mainController.alert("Hiba", e.getMessage());
         }
     }

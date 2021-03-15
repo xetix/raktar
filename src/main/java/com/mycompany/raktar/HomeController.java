@@ -53,7 +53,7 @@ public class HomeController implements Initializable {
     }
     
     public void openEditGoodsDialog(){
-        this.openNewDialog("editGoods", 250, 528);
+        this.openNewDialog("editGoodsi", 250, 528);
     }
     
     private void openNewDialog(String name, int width, int height){
@@ -66,8 +66,8 @@ public class HomeController implements Initializable {
             addCatScene.initModality(Modality.WINDOW_MODAL);
             addCatScene.initOwner(App.s);
             addCatScene.show();
-        } catch (IOException e) {
-            System.out.print("Failed to create new Window: "+e);
+        } catch (Exception e) {
+            this.alert("Hiba", "Nem sikerült létrhozni a dialógust.\n\nHiba leírása:\n" + e.toString());
         }
     }
     

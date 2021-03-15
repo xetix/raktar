@@ -47,7 +47,7 @@ public class DelGoodsController implements Initializable {
             App.wh.getCategory(itemCategory.getValue()).delProduct(itemName.getValue());
             App.mainController.refresh();
             ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
-        }catch(IllegalArgumentException | NullPointerException e){
+        }catch(Exception e){
             App.mainController.alert("Hiba", e.getMessage());
         }
     }
