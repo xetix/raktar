@@ -6,7 +6,9 @@
 package com.mycompany.raktar;
 
 import com.mycompany.raktar.model.Goods;
+import com.mycompany.raktar.model.Price;
 import com.mycompany.raktar.model.Price.Currency;
+import com.mycompany.raktar.model.Stock;
 import com.mycompany.raktar.model.Stock.UnitOfMeasure;
 import java.net.URL;
 import java.util.Arrays;
@@ -108,6 +110,7 @@ public class EditGoodsController implements Initializable {
     @FXML
     private void changeUnlockChk(ActionEvent event){
         if(this.unlockChk.isSelected()){
+            unlockChk.setDisable(true);
             itemRename.setDisable(false);
             itemVendorRename.setDisable(false);
             itemDescriptionUpdate.setDisable(false);
@@ -126,6 +129,18 @@ public class EditGoodsController implements Initializable {
     
     @FXML
     private void edit(ActionEvent event){
+        Goods source = App.wh.getCategory(itemCategory.getValue()).getProduct(itemName.getValue());
+        Stock stock = new Stock(Integer.parseInt(this.stockNewValue.getText()), this.itemStockUnitOfMeasure.getValue().toString());
+        Price price = new Price(Float.parseFloat(this.priceNewValue.getText()), this.itemPriceCurrency.getValue().toString());
+        Goods target = new Goods(
+                this.itemRename.getText(),
+                this.itemVendorRename.getText(),
+                this.itemDescriptionUpdate.getText(),
+                stock,
+                price
+        );
+        App.wh.getCategory(itemCategory.getValue()).delProduct(source.getName());
+        App.wh.getCategory(newItemCategory.getValue()).addProduct(target);
         App.mainController.refresh();
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
