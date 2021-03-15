@@ -53,7 +53,7 @@ public class HomeController implements Initializable {
     }
     
     public void openEditGoodsDialog(){
-        this.openNewDialog("editGoodsi", 250, 528);
+        this.openNewDialog("editGoods", 250, 528);
     }
     
     private void openNewDialog(String name, int width, int height){
