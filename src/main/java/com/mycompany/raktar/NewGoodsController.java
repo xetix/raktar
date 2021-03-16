@@ -69,7 +69,6 @@ public class NewGoodsController implements Initializable {
     }
     
     private static void addNumericValidation(TextField field, Boolean isFloat) {
-        field.getProperties().put("vkType", "numeric");
         field.setTextFormatter(new TextFormatter<>(c -> {
             if (c.isContentChange()) {
                 if (c.getControlNewText().length() == 0) {
@@ -82,11 +81,8 @@ public class NewGoodsController implements Initializable {
                         Integer.parseInt(c.getControlNewText());
                     }
                     return c;
-                } catch (NumberFormatException e) {
-                    
-                }
+                } catch (NumberFormatException e) {}
                 return null;
-
             }
             return c;
         }));
