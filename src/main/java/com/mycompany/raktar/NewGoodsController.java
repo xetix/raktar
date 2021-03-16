@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
 
 /**
@@ -61,9 +62,35 @@ public class NewGoodsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         newItemCategory.setItems(FXCollections.observableArrayList(App.wh.getKeys()));
+        addNumericValidation(newItemStock, false);
         newItemStockUnitOfMeasure.getItems().addAll(Arrays.asList(UnitOfMeasure.values()));
+        addNumericValidation(newItemPrice, true);
         newItemPriceCurrency.getItems().addAll(Arrays.asList(Currency.values()));
-    }    
+    }
+    
+    private static void addNumericValidation(TextField field, Boolean isFloat) {
+        field.getProperties().put("vkType", "numeric");
+        field.setTextFormatter(new TextFormatter<>(c -> {
+            if (c.isContentChange()) {
+                if (c.getControlNewText().length() == 0) {
+                    return c;
+                }
+                try {
+                    if(isFloat){
+                        Float.parseFloat(c.getControlNewText());
+                    }else{
+                        Integer.parseInt(c.getControlNewText());
+                    }
+                    return c;
+                } catch (NumberFormatException e) {
+                    
+                }
+                return null;
+
+            }
+            return c;
+        }));
+    }
 
     @FXML
     private void addButtonOnAction(ActionEvent event){

@@ -22,6 +22,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
 
 /**
@@ -56,6 +57,32 @@ public class EditGoodsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         itemCategory.setItems(FXCollections.observableArrayList(App.wh.getKeys()));
+        addNumericValidation(stockNewValue, false);
+        addNumericValidation(priceNewValue, true);
+    }
+    
+    private static void addNumericValidation(TextField field, Boolean isFloat) {
+        field.getProperties().put("vkType", "numeric");
+        field.setTextFormatter(new TextFormatter<>(c -> {
+            if (c.isContentChange()) {
+                if (c.getControlNewText().length() == 0) {
+                    return c;
+                }
+                try {
+                    if(isFloat){
+                        Float.parseFloat(c.getControlNewText());
+                    }else{
+                        Integer.parseInt(c.getControlNewText());
+                    }
+                    return c;
+                } catch (NumberFormatException e) {
+                    
+                }
+                return null;
+
+            }
+            return c;
+        }));
     }
     
     @FXML
