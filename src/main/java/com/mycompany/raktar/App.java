@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  * JavaFX App
  */
 public class App extends Application {
-    private static final String serFileName = "warehouse.txt";
+    private static final String serFileName = "warehouse.ser";
     private static Scene scene;
     static Warehouse wh = null;
     static Stage s;

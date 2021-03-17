@@ -9,7 +9,7 @@ import com.mycompany.raktar.model.Goods;
 import com.mycompany.raktar.model.Price;
 import com.mycompany.raktar.model.Price.Currency;
 import com.mycompany.raktar.model.Stock;
-import com.mycompany.raktar.model.Stock.UnitOfMeasure;
+import com.mycompany.raktar.model.Stock.Unit;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
@@ -93,8 +93,8 @@ public class EditGoodsController implements Initializable {
         if(selected != null){
             newItemCategory.setItems(FXCollections.observableArrayList(App.wh.getKeys()));
             newItemCategory.setValue(itemCategory.getValue());
-            itemStockUnitOfMeasure.setItems(FXCollections.observableArrayList(Arrays.asList(UnitOfMeasure.values())));
-            itemStockUnitOfMeasure.setValue(""+selected.getStock().getUnitOfMeasure());
+            itemStockUnitOfMeasure.setItems(FXCollections.observableArrayList(Arrays.asList(Unit.values())));
+            itemStockUnitOfMeasure.setValue(""+selected.getStock().getUnit());
             itemPriceCurrency.setItems(FXCollections.observableArrayList(Arrays.asList(Currency.values())));
             itemPriceCurrency.setValue(""+selected.getPrice().getCurrency());
             itemRename.setText(selected.getName());

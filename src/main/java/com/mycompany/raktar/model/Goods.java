@@ -13,11 +13,11 @@ import java.util.Objects;
  */
 public class Goods implements java.io.Serializable{
     private String name;
-    private String vendor = "";
-    private String description = "";
+    private String vendor="";
+    private String description="";
     
-    private Stock stock = new Stock();
-    private Price price = new Price();
+    private Stock stock = new Stock(0,"darab");
+    private Price price = new Price(0,"HUF");
 
     public Goods(String name){
         this.name = name;
@@ -105,7 +105,7 @@ public class Goods implements java.io.Serializable{
                "Gyártó: " + vendor + ", " + 
                "Leírás: " + description + ", " + 
                "Készlet: " + stock + ", " +
-               "Ár: " + price + " / " + stock.getUnitOfMeasure() + ".";
+               "Ár: " + price + " / " + stock.getUnit() + ".";
     }   
     
 }

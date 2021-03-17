@@ -9,7 +9,7 @@ import com.mycompany.raktar.model.Goods;
 import com.mycompany.raktar.model.Price;
 import com.mycompany.raktar.model.Price.Currency;
 import com.mycompany.raktar.model.Stock;
-import com.mycompany.raktar.model.Stock.UnitOfMeasure;
+import com.mycompany.raktar.model.Stock.Unit;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
@@ -63,7 +63,7 @@ public class NewGoodsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         newItemCategory.setItems(FXCollections.observableArrayList(App.wh.getKeys()));
         addNumericValidation(newItemStock, false);
-        newItemStockUnitOfMeasure.getItems().addAll(Arrays.asList(UnitOfMeasure.values()));
+        newItemStockUnitOfMeasure.getItems().addAll(Arrays.asList(Unit.values()));
         addNumericValidation(newItemPrice, true);
         newItemPriceCurrency.getItems().addAll(Arrays.asList(Currency.values()));
     }

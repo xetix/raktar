@@ -11,25 +11,23 @@ package com.mycompany.raktar.model;
  */
 public class Stock implements java.io.Serializable{
     private int stock;
-    private UnitOfMeasure unitOfMeasure;
+    private Unit unit;
     
-    public enum UnitOfMeasure {
-        db, cm, m, g, kg, csomag
+    public enum Unit {
+        darab, csomag, doboz, centiméter, méter, gramm, kilogramm, liter, deciliter
     }
 
-    public Stock(){}
-
-    public Stock(int stock, String unitOfMeasure) {
+    public Stock(int stock, String unit) {
         this.setStock(stock);
-        this.setUnitOfMeasure(unitOfMeasure);
+        this.getUnit(unit);
     }
 
     public int getStock() {
         return stock;
     }
 
-    public String getUnitOfMeasure() {
-        return (this.unitOfMeasure == null) ? "" : unitOfMeasure.toString();
+    public String getUnit() {
+        return (this.unit == null) ? "" : unit.toString();
     }
 
     public void setStock(int stock) {
@@ -37,9 +35,9 @@ public class Stock implements java.io.Serializable{
         this.stock = stock;
     }
 
-    public void setUnitOfMeasure(String unitOfMeasure) {
+    public void getUnit(String unit) {
         try{
-            this.unitOfMeasure = UnitOfMeasure.valueOf(unitOfMeasure);
+            this.unit = Unit.valueOf(unit);
         }catch( Exception e ){
             throw new IllegalArgumentException("Nem megfelelő mértékegység!");
         }
@@ -47,6 +45,6 @@ public class Stock implements java.io.Serializable{
 
     @Override
     public String toString() {
-        return stock + " " + unitOfMeasure;
+        return stock + " " + unit;
     }
 }

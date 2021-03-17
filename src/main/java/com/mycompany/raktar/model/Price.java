@@ -17,8 +17,6 @@ public class Price implements java.io.Serializable{
         HUF, USD, GBP, EUR, JPY, RUB, CNY
     }
 
-    public Price(){}
-
     public Price(float price, String currency) {
         this.setPrice(price);
         this.setCurrency(currency);
