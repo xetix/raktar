@@ -16,7 +16,7 @@
    <children>
       <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
-          <Menu mnemonicParsing="false" text="Karegóriák">
+          <Menu mnemonicParsing="false" text="Kategóriák">
             <items>
               <MenuItem fx:id="newCatBtn" mnemonicParsing="false" onAction="#openNewCatDialog" text="Új" />
                   <MenuItem mnemonicParsing="false" onAction="#openEditCatDialog" text="Átnevezés" />
