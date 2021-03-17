@@ -53,7 +53,7 @@ public class DelCategoryController implements Initializable {
             App.mainController.refresh();
             this.cancel(event);
         }catch(Exception e){
-            App.mainController.alert("Hiba", e.getMessage());
+            App.mainController.alert(e.getMessage());
         }
     }
     

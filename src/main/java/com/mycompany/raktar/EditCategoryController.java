@@ -12,8 +12,6 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -62,7 +60,7 @@ public class EditCategoryController implements Initializable {
             App.mainController.refresh();
             this.cancel(event);
         }catch(Exception e){
-            App.mainController.alert("Hiba", e.getMessage());
+            App.mainController.alert(e.getMessage());
         }
     }
     

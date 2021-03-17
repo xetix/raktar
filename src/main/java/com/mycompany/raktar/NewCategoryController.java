@@ -38,7 +38,7 @@ public class NewCategoryController implements Initializable {
             App.mainController.refresh();
             exitButtonOnAction(event);
         }catch(Exception e){
-            App.mainController.alert("Hiba", e.getMessage());
+            App.mainController.alert(e.getMessage());
         }
     }
     

@@ -48,7 +48,7 @@ public class DelGoodsController implements Initializable {
             App.mainController.refresh();
             ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
         }catch(Exception e){
-            App.mainController.alert("Hiba", e.getMessage());
+            App.mainController.alert(e.getMessage());
         }
     }
     
