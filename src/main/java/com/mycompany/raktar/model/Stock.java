@@ -9,13 +9,15 @@ package com.mycompany.raktar.model;
  *
  * @author Kovács Gergő
  */
-public final class Stock implements java.io.Serializable{
-    private int stock;  //Készlet
-    private UnitOfMeasure unitOfMeasure; //Mértékegység
+public class Stock implements java.io.Serializable{
+    private int stock;
+    private UnitOfMeasure unitOfMeasure;
     
-    public static enum UnitOfMeasure {
+    public enum UnitOfMeasure {
         db, cm, m, g, kg, csomag
     }
+
+    public Stock(){}
 
     public Stock(int stock, String unitOfMeasure) {
         this.setStock(stock);
@@ -26,8 +28,8 @@ public final class Stock implements java.io.Serializable{
         return stock;
     }
 
-    public UnitOfMeasure getUnitOfMeasure() {
-        return unitOfMeasure;
+    public String getUnitOfMeasure() {
+        return (this.unitOfMeasure == null) ? "" : unitOfMeasure.toString();
     }
 
     public void setStock(int stock) {

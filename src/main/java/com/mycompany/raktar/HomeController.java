@@ -7,16 +7,22 @@ package com.mycompany.raktar;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.mycompany.raktar.model.Category;
+import com.mycompany.raktar.model.Goods;
+import com.mycompany.raktar.model.Price;
+import com.mycompany.raktar.model.Stock;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 /**
  * FXML Controller class
@@ -27,6 +33,12 @@ public class HomeController implements Initializable {
 
     @FXML
     private MenuItem newCatBtn;
+
+    @FXML
+    private TreeTableView<Goods> out;
+
+    @FXML
+    private TreeTableColumn<Goods,String> name, vendor, description, stock, unitOfMeasure, price, currency;
     
     @FXML
     private TreeView warehouseTreeView;
@@ -70,26 +82,25 @@ public class HomeController implements Initializable {
         }
     }
     
-    @FXML
-    public void updateTreeView(){
-        TreeItem rootItem = new TreeItem("Készlet");
-        
+    private void updateTreeTableView(){
+        TreeItem<Goods> root = new TreeItem<>(new Goods("Készlet"));
+
         App.wh.getCategories().entrySet().stream().map(entry -> {
-            TreeItem catItem = new TreeItem(entry.getKey());
-            App.wh.getCategories().get(entry.getKey()).getProducts().entrySet().forEach(e -> {
-                catItem.getChildren().add(new TreeItem(e.getValue().toString()));
+            TreeItem<Goods> cat = new TreeItem<>(new Goods(entry.getKey()));
+            entry.getValue().getProducts().entrySet().stream().forEach(item -> {
+                cat.getChildren().add(new TreeItem<>(item.getValue()));
             });
-            return catItem;
-        }).forEachOrdered(catItem -> {
-            rootItem.getChildren().add(catItem);
+            return cat;
+        }).forEach(cat -> {
+            root.getChildren().add(cat);
         });
-        
-        warehouseTreeView.setRoot(rootItem);
+
+        out.setRoot(root);
     }
     
     public void refresh(){
         App.serialization(App.wh);
-        this.updateTreeView();
+        this.updateTreeTableView();
     }
     
     /**
@@ -100,7 +111,22 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         App.mainController = this;
-        this.updateTreeView();
+
+        name.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getValue().getName()));
+        vendor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getValue().getVendor()));
+        description.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getValue().getDescription()));
+        stock.setCellValueFactory(cellData -> new SimpleStringProperty(
+                (cellData.getValue().getValue().getStock().getUnitOfMeasure() == "") ?
+                        "" : cellData.getValue().getValue().getStock().getStock()+"")
+        );
+        unitOfMeasure.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getValue().getStock().getUnitOfMeasure()));
+        price.setCellValueFactory(cellData -> new SimpleStringProperty(
+                (cellData.getValue().getValue().getPrice().getCurrency() == "") ?
+                        "" : cellData.getValue().getValue().getPrice().getPrice()+"")
+        );
+        currency.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getValue().getPrice().getCurrency()));
+
+        this.updateTreeTableView();
     } 
     
     void alert(String title, String msg){
@@ -108,7 +134,6 @@ public class HomeController implements Initializable {
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(msg);
-
         alert.showAndWait();
     }
     

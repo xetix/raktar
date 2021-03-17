@@ -9,13 +9,15 @@ package com.mycompany.raktar.model;
  *
  * @author Kovács Gergő
  */
-public final class Price implements java.io.Serializable{
+public class Price implements java.io.Serializable{
     private float price;
     private Currency currency;
     
-    public static enum Currency {
+    public enum Currency {
         HUF, USD, GBP, EUR, JPY, RUB, CNY
     }
+
+    public Price(){}
 
     public Price(float price, String currency) {
         this.setPrice(price);
@@ -39,8 +41,8 @@ public final class Price implements java.io.Serializable{
         return price;
     }
 
-    public Currency getCurrency() {
-        return currency;
+    public String getCurrency() {
+        return ( currency == null ) ? "" : currency.toString();
     }
 
     @Override

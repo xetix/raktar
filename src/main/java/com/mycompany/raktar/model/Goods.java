@@ -11,13 +11,17 @@ import java.util.Objects;
  *
  * @author Kovács Gergő
  */
-public final class Goods implements java.io.Serializable{
-    private final String name; //Név
-    private String vendor; //Gyártó
-    private String description; //Leírás
+public class Goods implements java.io.Serializable{
+    private String name;
+    private String vendor = "";
+    private String description = "";
     
-    private Stock stock;  //Készlet
-    private Price price; //Ár
+    private Stock stock = new Stock();
+    private Price price = new Price();
+
+    public Goods(String name){
+        this.name = name;
+    }
 
     public Goods(
         String name, 
