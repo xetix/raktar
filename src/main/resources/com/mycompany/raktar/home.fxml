@@ -36,20 +36,20 @@
         <content>
           <AnchorPane>
                <children>
-                  <TreeTableView fx:id="out" showRoot="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TreeTableView fx:id="out" editable="true" showRoot="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TreeTableColumn fx:id="name" editable="false" prefWidth="100.0" text="Név" />
                       <TreeTableColumn fx:id="vendor" editable="false" prefWidth="100.0" text="Gyártó" />
                         <TreeTableColumn fx:id="description" editable="false" prefWidth="195.0" text="Leírás" />
                         <TreeTableColumn prefWidth="75.0" text="Készlet">
                            <columns>
-                              <TreeTableColumn fx:id="stock" editable="false" prefWidth="100.0" />
+                              <TreeTableColumn fx:id="stock" prefWidth="100.0" />
                               <TreeTableColumn fx:id="unitOfMeasure" editable="false" prefWidth="100.0" />
                            </columns>
                         </TreeTableColumn>
                         <TreeTableColumn prefWidth="75.0" text="Ár">
                            <columns>
-                              <TreeTableColumn fx:id="price" editable="false" prefWidth="100.0" />
+                              <TreeTableColumn fx:id="price" prefWidth="100.0" />
                               <TreeTableColumn fx:id="currency" editable="false" prefWidth="100.0" />
                            </columns>
                         </TreeTableColumn>

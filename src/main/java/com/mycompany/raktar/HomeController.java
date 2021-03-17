@@ -42,7 +42,7 @@ public class HomeController implements Initializable {
     
     @FXML
     private TreeView warehouseTreeView;
-    
+
     public void openNewCatDialog(){
         this.openNewDialog("newCategory", 250, 120);
     }
