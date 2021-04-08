@@ -46,7 +46,7 @@ public class NewGoodsController implements Initializable {
     private TextField newItemStock;
 
     @FXML
-    private ComboBox newItemStockUnitOfMeasure;
+    private ComboBox newItemStockUnit;
 
     @FXML
     private TextField newItemPrice;
@@ -63,7 +63,7 @@ public class NewGoodsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         newItemCategory.setItems(FXCollections.observableArrayList(App.wh.getKeys()));
         addNumericValidation(newItemStock, false);
-        newItemStockUnitOfMeasure.getItems().addAll(Arrays.asList(Unit.values()));
+        newItemStockUnit.getItems().addAll(Arrays.asList(Unit.values()));
         addNumericValidation(newItemPrice, true);
         newItemPriceCurrency.getItems().addAll(Arrays.asList(Currency.values()));
     }
@@ -91,7 +91,7 @@ public class NewGoodsController implements Initializable {
     @FXML
     private void addButtonOnAction(ActionEvent event){
         try{
-            Stock stock = new Stock(Integer.parseInt(this.newItemStock.getText()), this.newItemStockUnitOfMeasure.getValue().toString());
+            Stock stock = new Stock(Integer.parseInt(this.newItemStock.getText()), this.newItemStockUnit.getValue().toString());
             Price price = new Price(Float.parseFloat(this.newItemPrice.getText()), this.newItemPriceCurrency.getValue().toString());
             Goods g = new Goods(
                     this.newItemName.getText(),

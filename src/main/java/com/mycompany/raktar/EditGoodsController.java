@@ -35,7 +35,7 @@ public class EditGoodsController implements Initializable {
     private ComboBox<String> itemCategory, itemName, newItemCategory;
     
     @FXML
-    private ComboBox itemStockUnitOfMeasure, itemPriceCurrency;
+    private ComboBox itemStockUnit, itemPriceCurrency;
     
     @FXML
     private TextField itemRename, itemVendorRename, stockNewValue, priceNewValue;
@@ -93,8 +93,8 @@ public class EditGoodsController implements Initializable {
         if(selected != null){
             newItemCategory.setItems(FXCollections.observableArrayList(App.wh.getKeys()));
             newItemCategory.setValue(itemCategory.getValue());
-            itemStockUnitOfMeasure.setItems(FXCollections.observableArrayList(Arrays.asList(Unit.values())));
-            itemStockUnitOfMeasure.setValue(""+selected.getStock().getUnit());
+            itemStockUnit.setItems(FXCollections.observableArrayList(Arrays.asList(Unit.values())));
+            itemStockUnit.setValue(""+selected.getStock().getUnit());
             itemPriceCurrency.setItems(FXCollections.observableArrayList(Arrays.asList(Currency.values())));
             itemPriceCurrency.setValue(""+selected.getPrice().getCurrency());
             itemRename.setText(selected.getName());
@@ -122,8 +122,8 @@ public class EditGoodsController implements Initializable {
             newItemCategory.setDisable(true);
             newItemCategory.setValue(null);
             itemPriceCurrency.setDisable(true);
-            itemStockUnitOfMeasure.setDisable(true);
-            itemStockUnitOfMeasure.setValue(null);
+            itemStockUnit.setDisable(true);
+            itemStockUnit.setValue(null);
             itemPriceCurrency.setValue(null);
             saveBtn.setDisable(true);
         }        
@@ -138,14 +138,14 @@ public class EditGoodsController implements Initializable {
             itemDescriptionUpdate.setDisable(false);
             newItemCategory.setDisable(false);
             itemPriceCurrency.setDisable(false);
-            itemStockUnitOfMeasure.setDisable(false);
+            itemStockUnit.setDisable(false);
         }else{
             itemRename.setDisable(true);
             itemVendorRename.setDisable(true);
             itemDescriptionUpdate.setDisable(true);
             newItemCategory.setDisable(true);
             itemPriceCurrency.setDisable(true);
-            itemStockUnitOfMeasure.setDisable(true);
+            itemStockUnit.setDisable(true);
         }
     }
     
@@ -153,7 +153,7 @@ public class EditGoodsController implements Initializable {
     private void edit(ActionEvent event){
         try{
             Goods source = App.wh.getCategory(itemCategory.getValue()).getProduct(itemName.getValue());
-            Stock stock = new Stock(Integer.parseInt(this.stockNewValue.getText()), this.itemStockUnitOfMeasure.getValue().toString());
+            Stock stock = new Stock(Integer.parseInt(this.stockNewValue.getText()), this.itemStockUnit.getValue().toString());
             Price price = new Price(Float.parseFloat(this.priceNewValue.getText()), this.itemPriceCurrency.getValue().toString());
             Goods target = new Goods(
                     this.itemRename.getText(),

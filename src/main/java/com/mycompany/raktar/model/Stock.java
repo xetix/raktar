@@ -17,6 +17,8 @@ public class Stock implements java.io.Serializable{
         darab, csomag, doboz, centiméter, méter, gramm, kilogramm, liter, deciliter
     }
 
+    public Stock(){}
+
     public Stock(int stock, String unit) {
         this.setStock(stock);
         this.getUnit(unit);

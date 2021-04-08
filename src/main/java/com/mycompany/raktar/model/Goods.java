@@ -15,9 +15,9 @@ public class Goods implements java.io.Serializable{
     private String name;
     private String vendor="";
     private String description="";
-    
-    private Stock stock = new Stock(0,"darab");
-    private Price price = new Price(0,"HUF");
+
+    private Stock stock = new Stock();
+    private Price price = new Price();
 
     public Goods(String name){
         this.name = name;

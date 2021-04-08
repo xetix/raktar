@@ -44,7 +44,7 @@
                         <TreeTableColumn prefWidth="75.0" text="Készlet">
                            <columns>
                               <TreeTableColumn fx:id="stock" prefWidth="100.0" />
-                              <TreeTableColumn fx:id="unitOfMeasure" editable="false" prefWidth="100.0" />
+                              <TreeTableColumn fx:id="unit" editable="false" prefWidth="100.0" />
                            </columns>
                         </TreeTableColumn>
                         <TreeTableColumn prefWidth="75.0" text="Ár">

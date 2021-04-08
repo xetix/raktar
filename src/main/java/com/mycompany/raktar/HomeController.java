@@ -6,8 +6,6 @@
 package com.mycompany.raktar;
 
 import com.mycompany.raktar.model.Goods;
-import com.mycompany.raktar.model.Price;
-import com.mycompany.raktar.model.Stock;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,7 +29,7 @@ public class HomeController implements Initializable {
     private TreeTableView<Goods> out;
 
     @FXML
-    private TreeTableColumn<Goods,String> name, vendor, description, stock, unitOfMeasure, price, currency;
+    private TreeTableColumn<Goods,String> name, vendor, description, stock, unit, price, currency;
 
     public void openNewCatDialog(){
         this.openNewDialog("newCategory", 120);
@@ -73,7 +71,7 @@ public class HomeController implements Initializable {
     }
     
     private void updateTreeTableView(){
-        TreeItem<Goods> root = new TreeItem<>(new Goods("Készlet","","",new Stock(0,"darab"),new Price(0,"HUF")));
+        TreeItem<Goods> root = new TreeItem<>(new Goods("Készlet"));
 
         App.wh.getCategories().entrySet().stream().map(entry -> {
             TreeItem<Goods> cat = new TreeItem<>(new Goods(entry.getKey()));
@@ -100,7 +98,7 @@ public class HomeController implements Initializable {
                 (cellData.getValue().getValue().getStock().getUnit().equals("")) ?
                         "" : cellData.getValue().getValue().getStock().getStock()+"")
         );
-        unitOfMeasure.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getValue().getStock().getUnit()));
+        unit.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getValue().getStock().getUnit()));
         price.setCellValueFactory(cellData -> new SimpleStringProperty(
                 (cellData.getValue().getValue().getPrice().getCurrency().equals("")) ?
                         "" : cellData.getValue().getValue().getPrice().getPrice()+"")

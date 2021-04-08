@@ -72,7 +72,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </TextField>
-                  <ComboBox fx:id="itemStockUnitOfMeasure" disable="true" prefWidth="100.0" />
+                  <ComboBox fx:id="itemStockUnit" disable="true" prefWidth="100.0" />
                </children>
                <VBox.margin>
                   <Insets bottom="15.0" />
