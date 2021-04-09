@@ -12,19 +12,19 @@ import java.util.Objects;
 
 /**
  *
- * @author Kovács Gergő
+ * @author Kovács Gergő, Baranyai Richárd, Bedő Ákos
  */
 public class Category implements java.io.Serializable{
     private final String name;
     private HashMap<String, Goods> products = new HashMap<String, Goods>();
 
     public Category(String name) {
-        if( name.isEmpty() ) throw new IllegalArgumentException("Nincs megadva a kategória név.");
+        if( name.isEmpty() ) throw new IllegalArgumentException("Nincs megadva a kategórianév.");
         this.name = name;
     }    
     
     public Category(String name, HashMap<String, Goods> products) {
-        if( name.isEmpty() ) throw new IllegalArgumentException("Nincs megadva a kategória név.");
+        if( name.isEmpty() ) throw new IllegalArgumentException("Nincs megadva a kategórianév.");
         this.name = name;
         this.products = products;
     } 

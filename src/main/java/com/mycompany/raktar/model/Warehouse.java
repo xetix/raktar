@@ -12,7 +12,7 @@ import javafx.collections.ObservableList;
 
 /**
  *
- * @author Kovács Gergő
+ * @author Kovács Gergő, Baranyai Richárd, Bedő Ákos
  */
 public class Warehouse implements java.io.Serializable{
     private HashMap<String, Category> categories = new HashMap<String, Category>();

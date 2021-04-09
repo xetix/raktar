@@ -27,7 +27,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author Kovács Gergő
+ * @author Kovács Gergő, Baranyai Richárd, Bedő Ákos
  */
 public class NewGoodsController implements Initializable {
     @FXML

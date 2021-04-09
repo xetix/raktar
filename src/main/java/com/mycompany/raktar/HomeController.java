@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 /**
  * FXML Controller class
  *
- * @author Kovács Gergő
+ * @author Kovács Gergő, Baranyai Richárd, Bedő Ákos
  */
 public class HomeController implements Initializable {
 
@@ -32,41 +32,43 @@ public class HomeController implements Initializable {
     private TreeTableColumn<Goods,String> name, vendor, description, stock, unit, price, currency;
 
     public void openNewCatDialog(){
-        this.openNewDialog("newCategory", 120);
+        this.openNewDialog("newCategory", 95,"Új kategória hozzáadása");
     }
     
     public void openEditCatDialog(){
-        this.openNewDialog("editCategory", 160);
+        this.openNewDialog("editCategory", 135, "Kategória átnevezése");
     }
     
     public void openDelCatDialog(){
-        this.openNewDialog("delCategory", 120);
+        this.openNewDialog("delCategory", 95,"Kategória törlése");
     }
     
     public void openNewGoodsDialog(){
-        this.openNewDialog("newGoods", 390);
+        this.openNewDialog("newGoods", 350,"Új termék hozzáadása");
     }
-    
-    public void openDelGoodsDialog(){
-        this.openNewDialog("delGoods", 170);
-    }
-    
+
     public void openEditGoodsDialog(){
-        this.openNewDialog("editGoods", 528);
+        this.openNewDialog("editGoods", 453,"Termék szerkesztése");
+    }
+
+    public void openDelGoodsDialog(){
+        this.openNewDialog("delGoods", 145,"Termék törlése");
     }
     
-    private void openNewDialog(String name, int height){
+    private void openNewDialog(String name, int height, String windowTitle){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource(name+".fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 250, height);
-            Stage addCatScene = new Stage();
-            addCatScene.setScene(scene);
-            addCatScene.initModality(Modality.WINDOW_MODAL);
-            addCatScene.initOwner(App.s);
-            addCatScene.show();
+            Scene scene = new Scene(fxmlLoader.load(), 300, height);
+            Stage popupScene = new Stage();
+            popupScene.setScene(scene);
+            popupScene.initModality(Modality.WINDOW_MODAL);
+            popupScene.initOwner(App.s);
+            popupScene.setTitle(windowTitle);
+            popupScene.setResizable(false);
+            popupScene.show();
         } catch (Exception e) {
-            this.alert("Nem sikerült létrhozni a dialógust.\n\nHiba leírása:\n" + e.toString());
+            this.alert("Nem sikerült létrehozni a dialógust.\n\nHiba leírása:\n" + e.toString());
         }
     }
     

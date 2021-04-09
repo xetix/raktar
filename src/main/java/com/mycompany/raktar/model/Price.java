@@ -7,7 +7,7 @@ package com.mycompany.raktar.model;
 
 /**
  *
- * @author Kovács Gergő
+ * @author Kovács Gergő, Baranyai Richárd, Bedő Ákos
  */
 public class Price implements java.io.Serializable{
     private float price;

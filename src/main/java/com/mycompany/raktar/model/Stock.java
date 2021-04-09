@@ -7,7 +7,7 @@ package com.mycompany.raktar.model;
 
 /**
  *
- * @author Kovács Gergő
+ * @author Kovács Gergő, Baranyai Richárd, Bedő Ákos
  */
 public class Stock implements java.io.Serializable{
     private int stock;

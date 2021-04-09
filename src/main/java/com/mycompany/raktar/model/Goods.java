@@ -9,7 +9,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Kovács Gergő
+ * @author Kovács Gergő, Baranyai Richárd, Bedő Ákos
  */
 public class Goods implements java.io.Serializable{
     private String name;

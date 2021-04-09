@@ -24,6 +24,7 @@ public class App extends Application {
         scene = new Scene(loadFXML("home"));
         s = stage;
         stage.setScene(scene);
+        stage.setTitle("Raktárkezelő - SFM Projekt");
         stage.show();
     }
 
