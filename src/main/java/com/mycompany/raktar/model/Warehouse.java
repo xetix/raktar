@@ -8,7 +8,6 @@ package com.mycompany.raktar.model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import javafx.collections.ObservableList;
 
 /**
  *

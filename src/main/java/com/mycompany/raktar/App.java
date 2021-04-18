@@ -2,7 +2,6 @@ package com.mycompany.raktar;
 
 import com.mycompany.raktar.model.Warehouse;
 import java.io.*;
-import java.lang.ModuleLayer.Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

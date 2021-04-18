@@ -14,7 +14,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -89,6 +88,7 @@ public class HomeController implements Initializable {
     
     private void updateTreeTableView(){
         TreeItem<Goods> root = new TreeItem<>(new Goods("Készlet"));
+        out.setRoot(root);
         boolean isThereAnyProductsAdded=false;
 
         for (Category category: App.wh.getCategories().values()) {
@@ -132,7 +132,6 @@ public class HomeController implements Initializable {
                 delGoodsMenuItem.setDisable(true);
             }
         }
-        out.setRoot(root);
         out.getSortOrder().add(name);
     }
     

@@ -44,13 +44,13 @@
                       <TreeTableColumn fx:id="name" editable="false" minWidth="50.0" prefWidth="200.0" text="Név" />
                       <TreeTableColumn fx:id="vendor" editable="false" minWidth="50.0" prefWidth="200.0" text="Gyártó" />
                         <TreeTableColumn fx:id="description" editable="false" minWidth="50.0" prefWidth="215.0" text="Leírás" />
-                        <TreeTableColumn editable="false" minWidth="180.0" prefWidth="180.0" text="Készlet">
+                        <TreeTableColumn minWidth="180.0" prefWidth="180.0" text="Készlet">
                            <columns>
                               <TreeTableColumn fx:id="stock" editable="false" minWidth="80.0" prefWidth="90.0" />
                               <TreeTableColumn fx:id="unit" editable="false" minWidth="80.0" prefWidth="90.0" />
                            </columns>
                         </TreeTableColumn>
-                        <TreeTableColumn editable="false" minWidth="140.0" prefWidth="190.0" text="Ár">
+                        <TreeTableColumn minWidth="140.0" prefWidth="190.0" text="Egységár">
                            <columns>
                               <TreeTableColumn fx:id="price" editable="false" minWidth="80.0" prefWidth="90.0" />
                               <TreeTableColumn fx:id="currency" editable="false" minWidth="50.0" prefWidth="90.0" />

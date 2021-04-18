@@ -11,7 +11,7 @@ import java.net.URL;
 import java.util.Collections;
 import java.util.ResourceBundle;
 
-import javafx.application.Platform;
+import com.mycompany.raktar.model.Stock;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,7 +21,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
