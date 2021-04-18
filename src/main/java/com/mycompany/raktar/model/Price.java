@@ -6,48 +6,54 @@
 package com.mycompany.raktar.model;
 
 /**
- *
  * @author Kovács Gergő, Baranyai Richárd, Bedő Ákos
  */
-public class Price implements java.io.Serializable{
-    private float price;
+public class Price implements java.io.Serializable {
+    private String priceNumber;
     private Currency currency;
-    
+
     public enum Currency {
-        HUF, USD, GBP, EUR, JPY, RUB, CNY
+        HUF, USD, EUR, GBP, JPY, RUB, CNY
     }
 
-    public Price(){}
+    public Price() {
+    }
 
-    public Price(float price, String currency) {
-        this.setPrice(price);
+    public Price(String priceNumber, String currency) {
+        this.setPriceNumber(priceNumber);
         this.setCurrency(currency);
     }
 
-    public void setPrice(float price) {
-        if(price<0) throw new IllegalArgumentException("Az ár nem lehet negatív!");
-        this.price = price;
+    public void setPriceNumber(String priceNumber) {
+        if (Float.parseFloat(priceNumber) < 0) throw new IllegalArgumentException("Az ár nem lehet negatív!");
+        this.priceNumber = priceNumber;
     }
 
     public void setCurrency(String currency) {
-        try{
+        try
+        {
             this.currency = Currency.valueOf(currency);
-        }catch( Exception e ){
+        }
+        catch (Exception e)
+        {
             throw new IllegalArgumentException("Nem megfelelő pénznem!");
         }
     }
 
-    public float getPrice() {
-        return price;
+    public String getPriceNumber() {
+        return priceNumber;
     }
 
     public String getCurrency() {
-        return ( currency == null ) ? "" : currency.toString();
+        return (currency == null) ? "" : currency.toString();
     }
 
     @Override
     public String toString() {
-        return price + " " + currency;
-    }    
-    
+        if (currency.equals("HUF"))
+            return String.valueOf(priceNumber).substring(String.valueOf(priceNumber).indexOf(".")) + " " + currency;
+        else
+            return priceNumber + " " + currency;
+    }
+
 }

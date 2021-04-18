@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -25,6 +26,7 @@ public class App extends Application {
         s = stage;
         stage.setScene(scene);
         stage.setTitle("Raktárkezelő - SFM Projekt");
+        stage.getIcons().add(new Image("file:warehouse.png"));
         stage.show();
     }
 

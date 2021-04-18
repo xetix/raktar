@@ -5,6 +5,9 @@
  */
 package com.mycompany.raktar.model;
 
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
+
 import java.util.Objects;
 
 /**
@@ -35,6 +38,40 @@ public class Goods implements java.io.Serializable{
         this.setDescription(description);
         this.setStock(stock);
         this.setPrice(price);
+    }
+
+    public static void numericValidation(TextField field) {
+        field.setTextFormatter(new TextFormatter<>(c -> {
+            if (c.isContentChange())
+            {
+                String newText = c.getControlNewText();
+                String newChar = c.getText();
+                if (newText.length() == 0)   // ne nézze tovább, ha üresen marad a szöveg (pl. csak belekattintottál)
+                    return c;
+                if (newText.contains(" "))   // nem tartalmazhat space-t
+                    return null;
+                if (newText.length() == 10)  // maximális szám: 999 999 999 vagy 999 999 99.9
+                    return null;
+                if (newText.contains("-"))   // nem tartalmazhat mínuszjelet
+                    return null;
+                if (newChar.equals(","))
+                {
+                    c.setText(".");          // ',' helyett '.' jelenjen meg
+                    newText = c.getControlNewText();
+                }
+                try
+                {
+                    Integer.parseInt(newText.replace(".", ""));   // 'd' és 'f' Float szerint még elfogadott
+                    Float.parseFloat(newText);
+                    return c;
+                }
+                catch (NumberFormatException e)
+                {
+                }
+                return null;
+            }
+            return c;
+        }));
     }
 
     public String getName() {

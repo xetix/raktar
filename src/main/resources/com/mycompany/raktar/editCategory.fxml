@@ -3,28 +3,46 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" onKeyTyped="#keyPressed" prefHeight="135.0" prefWidth="297.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.raktar.EditCategoryController">
+<AnchorPane id="AnchorPane" onKeyTyped="#keyPressed" prefHeight="170.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.raktar.EditCategoryController">
    <children>
       <VBox layoutX="1.0" layoutY="-3.0" prefHeight="143.0" prefWidth="279.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-3.0">
          <children>
-            <ComboBox fx:id="itemCategory" onAction="#changeCategory" prefWidth="351.0" promptText="Nincs hozzáadott kategória">
+            <Label text="Átnevezendő kategória:">
                <VBox.margin>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                  <Insets left="15.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="itemCategory" onAction="#changeCategory" prefWidth="351.0" promptText="Válasszon kategóriát...">
+               <VBox.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="3.0" />
                </VBox.margin>
             </ComboBox>
+            <Label fx:id="newNameLabel" text="Kategória új neve:">
+               <VBox.margin>
+                  <Insets left="15.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
             <TextField fx:id="newCategoryName" onKeyTyped="#keyPressed" promptText="Kategória új neve">
                <VBox.margin>
-                  <Insets bottom="15.0" left="15.0" right="15.0" />
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="3.0" />
                </VBox.margin>
             </TextField>
             <HBox alignment="TOP_CENTER" prefHeight="27.0" prefWidth="220.0">
                <children>
-                  <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#cancel" text="Mégsem">
+                  <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#cancel" prefWidth="70.0" text="Mégsem">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>

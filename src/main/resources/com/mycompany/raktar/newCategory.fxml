@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" onKeyTyped="#keyPressed" prefHeight="95.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.raktar.NewCategoryController">
+<AnchorPane id="AnchorPane" onKeyTyped="#keyPressed" prefHeight="95.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.raktar.NewCategoryController">
    <children>
       <VBox prefHeight="95.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -18,12 +18,12 @@
             </TextField>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#exitButtonOnAction" text="Mégsem">
+                  <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#exitButtonOnAction" prefWidth="73.0" text="Mégsem">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="addBtn" mnemonicParsing="false" onAction="#addButtonOnAction" text="Hozzáad">
+                  <Button fx:id="addBtn" mnemonicParsing="false" onAction="#addButtonOnAction" text="Hozzáadás">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>

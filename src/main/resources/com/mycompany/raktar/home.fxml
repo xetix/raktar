@@ -12,22 +12,22 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.raktar.HomeController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.raktar.HomeController">
    <children>
       <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="Kategóriák">
             <items>
               <MenuItem fx:id="newCatBtn" mnemonicParsing="false" onAction="#openNewCatDialog" text="Új" />
-                  <MenuItem mnemonicParsing="false" onAction="#openEditCatDialog" text="Átnevezés" />
-                  <MenuItem mnemonicParsing="false" onAction="#openDelCatDialog" text="Törlés" />
+                  <MenuItem fx:id="editCatMenuItem" mnemonicParsing="false" onAction="#openEditCatDialog" text="Átnevezés" />
+                  <MenuItem fx:id="delCatMenuItem" mnemonicParsing="false" onAction="#openDelCatDialog" text="Törlés" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Termékek">
+          <Menu fx:id="goodsMenu" mnemonicParsing="false" text="Termékek">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#openNewGoodsDialog" text="Új" />
-                  <MenuItem mnemonicParsing="false" onAction="#openEditGoodsDialog" text="Szerkesztés" />
-                  <MenuItem mnemonicParsing="false" onAction="#openDelGoodsDialog" text="Törlés" />
+                  <MenuItem fx:id="editGoodsMenuItem" mnemonicParsing="false" onAction="#openEditGoodsDialog" text="Szerkesztés" />
+                  <MenuItem fx:id="delGoodsMenuItem" mnemonicParsing="false" onAction="#openDelGoodsDialog" text="Törlés" />
             </items>
           </Menu>
         </menus>
@@ -38,22 +38,22 @@
                <children>
                   <TreeTableView fx:id="out" editable="true" showRoot="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                       <placeholder>
-                          <Label text="Az adatbázis üres"/>
+                          <Label text="Az adatbázis üres" />
                       </placeholder>
                       <columns>
-                      <TreeTableColumn fx:id="name" editable="false" prefWidth="100.0" text="Név" />
-                      <TreeTableColumn fx:id="vendor" editable="false" prefWidth="100.0" text="Gyártó" />
-                        <TreeTableColumn fx:id="description" editable="false" prefWidth="195.0" text="Leírás" />
-                        <TreeTableColumn prefWidth="75.0" text="Készlet">
+                      <TreeTableColumn fx:id="name" editable="false" minWidth="50.0" prefWidth="200.0" text="Név" />
+                      <TreeTableColumn fx:id="vendor" editable="false" minWidth="50.0" prefWidth="200.0" text="Gyártó" />
+                        <TreeTableColumn fx:id="description" editable="false" minWidth="50.0" prefWidth="215.0" text="Leírás" />
+                        <TreeTableColumn editable="false" minWidth="180.0" prefWidth="180.0" text="Készlet">
                            <columns>
-                              <TreeTableColumn fx:id="stock" prefWidth="100.0" />
-                              <TreeTableColumn fx:id="unit" editable="false" prefWidth="100.0" />
+                              <TreeTableColumn fx:id="stock" editable="false" minWidth="80.0" prefWidth="90.0" />
+                              <TreeTableColumn fx:id="unit" editable="false" minWidth="80.0" prefWidth="90.0" />
                            </columns>
                         </TreeTableColumn>
-                        <TreeTableColumn prefWidth="75.0" text="Ár">
+                        <TreeTableColumn editable="false" minWidth="140.0" prefWidth="190.0" text="Ár">
                            <columns>
-                              <TreeTableColumn fx:id="price" prefWidth="100.0" />
-                              <TreeTableColumn fx:id="currency" editable="false" prefWidth="100.0" />
+                              <TreeTableColumn fx:id="price" editable="false" minWidth="80.0" prefWidth="90.0" />
+                              <TreeTableColumn fx:id="currency" editable="false" minWidth="50.0" prefWidth="90.0" />
                            </columns>
                         </TreeTableColumn>
                       </columns>

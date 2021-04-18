@@ -6,13 +6,18 @@
 package com.mycompany.raktar;
 
 import java.net.URL;
+import java.util.Collections;
 import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /**
@@ -23,37 +28,63 @@ import javafx.stage.Stage;
 public class DelGoodsController implements Initializable {
     @FXML
     private ComboBox<String> itemCategory, itemName;
-    
-    /**
-     * Initializes the controller class.
-     * @param url
-     * @param rb
-     */
+    @FXML
+    private Label delGoodsNameLabel;
+
+    @FXML
+    private Button delBtn;
+
+    @FXML
+    private Button cancelBtn;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        itemCategory.setItems(FXCollections.observableArrayList(App.wh.getKeys()));
+        ObservableList<String> list=FXCollections.observableArrayList(App.wh.getKeys());
+        Collections.sort(list);
+        itemCategory.setItems(list);
+        delGoodsNameLabel.setDisable(true);
         itemName.setDisable(true);
-    }    
-    
-    @FXML
-    private void selectedCategory(ActionEvent event){
-        itemName.setItems(FXCollections.observableArrayList(App.wh.getCategory(itemCategory.getValue()).getKeys()));
-        itemName.setDisable(false);        
+        delBtn.setDisable(true);
     }
-    
+
     @FXML
-    private void del(ActionEvent event){
-        try{
+    private void selectedCategory(ActionEvent event) {
+        ObservableList<String> list=FXCollections.observableArrayList(App.wh.getCategory(itemCategory.getValue()).getKeys());
+        Collections.sort(list);
+        itemName.setItems(list);
+        delGoodsNameLabel.setDisable(false);
+        itemName.setDisable(false);
+        itemName.requestFocus();
+    }
+
+    @FXML
+    private void selectedGoods(ActionEvent event) {
+        delBtn.setDisable(false);
+        delBtn.requestFocus();
+    }
+
+    @FXML
+    public void keyPressed(KeyEvent e) {
+        if (e.getCharacter().getBytes()[0]==27)
+            cancelBtn.fire();
+    }
+
+    @FXML
+    private void del(ActionEvent event) {
+        try
+        {
             App.wh.getCategory(itemCategory.getValue()).delProduct(itemName.getValue());
             App.mainController.refresh();
-            ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
-        }catch(Exception e){
-            App.mainController.alert(e.getMessage());
+            ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+        }
+        catch (Exception e)
+        {
+            App.mainController.alert("Hiba",e.getMessage());
         }
     }
-    
+
     @FXML
-    private void cancel(ActionEvent event){
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();      
+    private void cancel(ActionEvent event) {
+        ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
     }
 }

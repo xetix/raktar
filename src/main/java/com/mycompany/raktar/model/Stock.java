@@ -10,31 +10,31 @@ package com.mycompany.raktar.model;
  * @author Kovács Gergő, Baranyai Richárd, Bedő Ákos
  */
 public class Stock implements java.io.Serializable{
-    private int stock;
+    private String stockNumber;
     private Unit unit;
     
     public enum Unit {
-        darab, csomag, doboz, centiméter, méter, gramm, kilogramm, liter, deciliter
+        darab, csomag, doboz, méter, centiméter, milliméter, kilogramm, dekagramm, gramm, liter, deciliter, milliliter
     }
 
     public Stock(){}
 
-    public Stock(int stock, String unit) {
-        this.setStock(stock);
+    public Stock(String stockNumber, String unit) {
+        this.setStockNumber(stockNumber);
         this.getUnit(unit);
     }
 
-    public int getStock() {
-        return stock;
+    public String getStockNumber() {
+        return stockNumber;
     }
 
     public String getUnit() {
         return (this.unit == null) ? "" : unit.toString();
     }
 
-    public void setStock(int stock) {
-        if(stock<0) throw new IllegalArgumentException("A készlet nem lehet negatív!");
-        this.stock = stock;
+    public void setStockNumber(String stockNumber) {
+        if(Float.parseFloat(stockNumber) < 0) throw new IllegalArgumentException("A készlet nem lehet negatív!");
+        this.stockNumber = stockNumber;
     }
 
     public void getUnit(String unit) {
@@ -47,6 +47,6 @@ public class Stock implements java.io.Serializable{
 
     @Override
     public String toString() {
-        return stock + " " + unit;
+        return stockNumber + " " + unit;
     }
 }

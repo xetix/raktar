@@ -8,10 +8,12 @@ package com.mycompany.raktar;
 import com.mycompany.raktar.model.Category;
 
 import java.net.URL;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
-import javafx.application.Platform;
+//import javafx.application.Platform;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,18 +38,17 @@ public class DelCategoryController implements Initializable {
     @FXML
     private ComboBox<String> itemCategory;
 
-    /**
-     * Initializes the controller class.
-     *
-     * @param url
-     * @param rb
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        itemCategory.setItems(FXCollections.observableArrayList(App.wh.getKeys()));
+        ObservableList<String> list=FXCollections.observableArrayList(App.wh.getKeys());
+        Collections.sort(list);
+        itemCategory.setItems(list);
+        /* ---  Elsőt választja ki automatikusan -> rollback: véletlen törlés elkerülése végett
+                + a menüben került letiltásra a gomb, így ha nincs felvéve kategória, nincs mit törölni, nem lehet
+                  megnyitni az ablakot, nincs mit lekezelni/letiltani ---
         itemCategory.getSelectionModel().selectFirst();
         if (itemCategory.getSelectionModel().isEmpty())
-            delBtn.setDisable(true);
+        */    delBtn.setDisable(true);/*
 
         //Ez azért így kell, mert az initalize-ban a fókuszt nem lehet áthelyezni még alapból
         Platform.runLater(new Runnable() {
@@ -56,7 +57,7 @@ public class DelCategoryController implements Initializable {
                 if (!itemCategory.getSelectionModel().isEmpty())
                     delBtn.requestFocus();
             }
-        });
+        });*/
     }
 
     @FXML
@@ -82,7 +83,7 @@ public class DelCategoryController implements Initializable {
         }
         catch (Exception e)
         {
-            App.mainController.alert(e.getMessage());
+            App.mainController.alert("Hiba",e.getMessage());
         }
     }
 

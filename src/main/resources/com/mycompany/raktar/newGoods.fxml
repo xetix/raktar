@@ -3,57 +3,88 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="350.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.raktar.NewGoodsController">
+<AnchorPane id="AnchorPane" onKeyTyped="#keyPressed" prefHeight="410.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.raktar.NewGoodsController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="363.0" prefWidth="250.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox prefHeight="410.0" prefWidth="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ComboBox fx:id="newItemCategory" prefWidth="351.0" promptText="Kategória">
+            <Label text="* Kategória:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="newItemCategory" onAction="#fieldValidator" prefWidth="351.0" promptText="Válasszon kategóriát...">
                <VBox.margin>
-                  <Insets bottom="15.0" />
+                  <Insets bottom="10.0" />
                </VBox.margin>
             </ComboBox>
-            <TextField fx:id="newItemName" promptText="Név">
+            <Label text="* Név:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="newItemName" onKeyTyped="#keyPressed" promptText="Új termék neve">
                <VBox.margin>
-                  <Insets bottom="15.0" />
+                  <Insets bottom="10.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="newItemVendor" layoutX="20.0" layoutY="65.0" promptText="Gyártó">
+            <Label text="* Gyártó:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="newItemVendor" layoutX="20.0" layoutY="65.0" onKeyTyped="#keyPressed" promptText="Új termék gyártója">
                <VBox.margin>
-                  <Insets bottom="15.0" />
+                  <Insets bottom="10.0" />
                </VBox.margin>
             </TextField>
-            <TextArea fx:id="newItemDescription" prefHeight="75.0" prefWidth="200.0" promptText="Leírás">
+            <Label text="Leírás:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <TextArea fx:id="newItemDescription" minHeight="60.0" onKeyTyped="#keyPressed" prefHeight="60.0" prefWidth="270.0" promptText="Leírás">
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
             </TextArea>
-            <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="200.0">
+            <HBox alignment="CENTER_LEFT">
                <children>
-                  <TextField fx:id="newItemStock" promptText="Készlet">
+                  <Label alignment="BOTTOM_LEFT" contentDisplay="RIGHT" minWidth="70.0" prefWidth="70.0" text="* Készlet:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="newItemStock" minWidth="85.0" onKeyTyped="#keyPressed" prefWidth="85.0" promptText="Készlet">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </TextField>
-                  <ComboBox fx:id="newItemStockUnit" prefWidth="100.0" />
+                  <ComboBox fx:id="newItemStockUnit" minWidth="100.0" prefWidth="100.0" />
                </children>
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
             </HBox>
-            <HBox alignment="TOP_CENTER" layoutX="20.0" layoutY="212.0" prefHeight="25.0" prefWidth="200.0">
+            <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="212.0">
                <children>
-                  <TextField fx:id="newItemPrice" promptText="Ár">
+                  <Label contentDisplay="RIGHT" minWidth="70.0" prefWidth="70.0" text="* Egységár:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="newItemPrice" minWidth="85.0" onKeyTyped="#keyPressed" prefWidth="85.0" promptText="Egységár">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </TextField>
-                  <ComboBox fx:id="newItemPriceCurrency" prefWidth="100.0" />
+                  <ComboBox fx:id="newItemPriceCurrency" minWidth="65.0" prefWidth="65.0" />
                </children>
                <VBox.margin>
                   <Insets bottom="15.0" />
@@ -64,12 +95,12 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
                <children>
-                  <Button fx:id="newItemCancel" mnemonicParsing="false" onAction="#exitButtonOnAction" text="Mégsem">
+                  <Button fx:id="newItemCancelBtn" mnemonicParsing="false" onAction="#exitButtonOnAction" prefWidth="73.0" text="Mégsem">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="newItemAdd" mnemonicParsing="false" onAction="#addButtonOnAction" text="Hozzáad" />
+                  <Button fx:id="newItemAddBtn" mnemonicParsing="false" onAction="#addButtonOnAction" text="Hozzáadás" />
                </children>
             </HBox>
          </children>
