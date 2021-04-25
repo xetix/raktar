@@ -3,14 +3,16 @@ package com.mycompany.raktar.currencyXML;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 
+import java.math.BigDecimal;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Item {
     private String penznem;
-    private Float kozep;
+    private BigDecimal kozep;
 
     public Item() {}
 
-    public Item(String penznem, Float kozep) {
+    public Item(String penznem, BigDecimal kozep) {
         super();
         this.penznem = penznem;
         this.kozep = kozep;
@@ -20,7 +22,7 @@ public class Item {
         return penznem;
     }
 
-    public Float getKozep() {
+    public BigDecimal getKozep() {
         return kozep;
     }
 }

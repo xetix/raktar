@@ -69,12 +69,32 @@ public class NewGoodsController implements Initializable {
         ObservableList<String> list=FXCollections.observableArrayList(App.wh.getKeys());
         Collections.sort(list);
         newItemCategory.setItems(list);
+        Goods.textValidation(newItemName);
+        Goods.textValidation(newItemVendor);
+        Goods.descValidation(newItemDescription);
         Goods.numericValidation(newItemStock);
         newItemStockUnit.getItems().addAll(Arrays.asList(Unit.values()));
         Goods.numericValidation(newItemPrice);
         newItemPriceCurrency.getItems().addAll(Arrays.asList(Currency.values()));
         newItemStockUnit.getSelectionModel().selectFirst();
-        newItemPriceCurrency.getSelectionModel().selectFirst();
+        switch (App.preferredCurrency)
+        {
+            case "HUF":
+                newItemPriceCurrency.getSelectionModel().select(0);
+                break;
+            case "USD":
+                newItemPriceCurrency.getSelectionModel().select(1);
+                break;
+            case "EUR":
+                newItemPriceCurrency.getSelectionModel().select(2);
+                break;
+            case "GBP":
+                newItemPriceCurrency.getSelectionModel().select(3);
+                break;
+            default:
+                newItemPriceCurrency.setValue(App.preferredCurrency);
+        }
+
         newItemAddBtn.setDisable(true);
     }
 

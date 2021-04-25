@@ -50,17 +50,27 @@ public class DelGoodsController implements Initializable {
     @FXML
     private void selectedCategory(ActionEvent event) {
         ObservableList<String> list=FXCollections.observableArrayList(App.wh.getCategory(itemCategory.getValue()).getKeys());
-        Collections.sort(list);
         itemName.setItems(list);
-        delGoodsNameLabel.setDisable(false);
-        itemName.setDisable(false);
-        itemName.requestFocus();
+        if (list.size()==0)
+        {
+            itemName.setItems(null);
+            itemName.setDisable(true);
+            delGoodsNameLabel.setDisable(true);
+        }
+        else
+        {
+            itemName.setDisable(false);
+            delGoodsNameLabel.setDisable(false);
+            Collections.sort(list);
+            itemName.setItems(list);
+        }
+        //itemName.requestFocus();        //megnehezíti a billentyűzettel való kezelést, ha nem a legelsőt szeretném választani
     }
 
     @FXML
     private void selectedGoods(ActionEvent event) {
         delBtn.setDisable(false);
-        delBtn.requestFocus();
+        //delBtn.requestFocus();        //megnehezíti a billentyűzettel való kezelést, ha nem a legelsőt szeretném választani
     }
 
     @FXML

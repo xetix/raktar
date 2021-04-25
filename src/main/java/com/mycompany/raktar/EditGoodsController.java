@@ -59,16 +59,29 @@ public class EditGoodsController implements Initializable {
         itemCategory.setItems(list);
         Goods.numericValidation(stockNewValue);
         Goods.numericValidation(priceNewValue);
+        Goods.textValidation(itemRename);
+        Goods.textValidation(itemVendorRename);
+        Goods.descValidation(itemDescriptionUpdate);
     }
 
     @FXML
     private void selectedCategory(ActionEvent event) {
         ObservableList<String> list=FXCollections.observableArrayList(App.wh.getCategory(itemCategory.getValue()).getKeys());
-        Collections.sort(list);
-        itemName.setItems(list);
-        itemName.setDisable(false);
-        itemNameLbl.setDisable(false);
-        itemName.requestFocus();
+        //itemName.getSelectionModel().clearSelection(); // Válasszon terméket...
+        if (list.size()==0)
+        {
+            itemName.setItems(null);
+            itemName.setDisable(true);
+            itemNameLbl.setDisable(true);
+        }
+        else
+        {
+            itemName.setDisable(false);
+            itemNameLbl.setDisable(false);
+            Collections.sort(list);
+            itemName.setItems(list);
+        }
+        //itemName.requestFocus();        //megnehezíti a billentyűzettel való kezelést, ha nem a legelsőt szeretném választani
     }
 
     private Goods selected;
@@ -76,22 +89,57 @@ public class EditGoodsController implements Initializable {
     @FXML
     private void selectedItem(ActionEvent event) {
         selected = App.wh.getCategory(itemCategory.getValue()).getProduct(itemName.getValue());
-        //if(selected != null){
+        if(selected == null)
+        {
+            itemRename.setText("");
+            itemVendorRename.setText("");
+            itemDescriptionUpdate.setText("");
+            stockNewValue.setText("");
+            priceNewValue.setText("");
+            newItemCategory.getSelectionModel().clearSelection(); //Kategória
+            itemStockUnit.setItems(null);
+            itemStockUnit.setValue("Kategória");
+            itemStockUnit.getSelectionModel().clearSelection();
+            itemStockUnit.setItems(null);
+            itemStockUnit.setValue("");
+            itemPriceCurrency.getSelectionModel().clearSelection();
+            itemPriceCurrency.setItems(null);
+            return;
+        }
         if (selected != null)
             unlockChk.setDisable(false);
         ObservableList<String> list=FXCollections.observableArrayList(App.wh.getKeys());
         Collections.sort(list);
         newItemCategory.setItems(list);
         newItemCategory.setValue(itemCategory.getValue());
-        itemStockUnit.setItems(FXCollections.observableArrayList(Arrays.asList(Unit.values())));
+        //itemStockUnit.setItems(FXCollections.observableArrayList(Arrays.asList(Unit.values())));
+        itemStockUnit.getItems().clear();
+        itemStockUnit.getItems().addAll(Arrays.asList(Unit.values()));
         itemStockUnit.setValue("" + selected.getStock().getUnit());
-        itemPriceCurrency.setItems(FXCollections.observableArrayList(Arrays.asList(Currency.values())));
-        itemPriceCurrency.setValue("" + selected.getPrice().getCurrency());
+        //itemPriceCurrency.setItems(FXCollections.observableArrayList(Arrays.asList(Currency.values())));
+        itemPriceCurrency.getItems().clear();
+        itemPriceCurrency.getItems().addAll(Arrays.asList(Currency.values()));
+        //itemPriceCurrency.setValue("" + selected.getDisplayedPrice().getCurrency());
+        switch (selected.getOriginalPrice().getCurrency())
+        {
+            case "HUF":
+                itemPriceCurrency.getSelectionModel().select(0);
+                break;
+            case "USD":
+                itemPriceCurrency.getSelectionModel().select(1);
+                break;
+            case "EUR":
+                itemPriceCurrency.getSelectionModel().select(2);
+                break;
+            case "GBP":
+                itemPriceCurrency.getSelectionModel().select(3);
+                break;
+        }
         itemRename.setText(selected.getName());
         itemVendorRename.setText(selected.getVendor());
         itemDescriptionUpdate.setText(selected.getDescription());
-        stockNewValue.setText("" + selected.getStock().getStockNumber());
-        priceNewValue.setText("" + selected.getPrice().getPriceNumber());
+        stockNewValue.setText("" + selected.getStock().getStockNumber().replace(" ",""));
+        priceNewValue.setText("" + selected.getOriginalPrice().getPriceNumber().replace(" ",""));
         stockNewValue.setDisable(false);
         stockNewValueLbl.setDisable(false);
         priceNewValue.setDisable(false);
@@ -179,11 +227,12 @@ public class EditGoodsController implements Initializable {
                         !itemRename.getText().trim().equals(selected.getName()) ||
                         !itemVendorRename.getText().trim().equals(selected.getVendor()) ||
                         !itemDescriptionUpdate.getText().equals(selected.getDescription()) ||
-                        !stockNewValue.getText().replace(',', '.').equals("" + selected.getStock().getStockNumber()) ||
-                        !priceNewValue.getText().replace(',', '.').equals("" + selected.getPrice().getPriceNumber()) ||
+                        !stockNewValue.getText().replace(',', '.').equals(selected.getStock().getStockNumber().replace(" ","")) ||
+                        !priceNewValue.getText().replace(',', '.').equals(selected.getOriginalPrice().getPriceNumber().replace(" ","")) ||
                         !itemStockUnit.getSelectionModel().getSelectedItem().toString().equals(selected.getStock().getUnit()) ||
-                        !itemPriceCurrency.getSelectionModel().getSelectedItem().toString().equals(selected.getPrice().getCurrency())
+                        !itemPriceCurrency.getSelectionModel().getSelectedItem().toString().equals(selected.getOriginalPrice().getCurrency())
                 )
+
         )
             saveBtn.setDisable(false);
         else
@@ -205,8 +254,8 @@ public class EditGoodsController implements Initializable {
     private void edit(ActionEvent event) {
         try
         {
-            Stock stock = new Stock(this.stockNewValue.getText().replace(',', '.'), this.itemStockUnit.getValue().toString());
-            Price price = new Price(this.priceNewValue.getText().replace(',', '.'), this.itemPriceCurrency.getValue().toString());
+            Stock stock = new Stock(this.stockNewValue.getText().replace(',', '.').trim(), this.itemStockUnit.getValue().toString());
+            Price price = new Price(this.priceNewValue.getText().replace(',', '.').trim(), this.itemPriceCurrency.getValue().toString());
             Goods target = new Goods(
                     this.itemRename.getText(),
                     this.itemVendorRename.getText(),

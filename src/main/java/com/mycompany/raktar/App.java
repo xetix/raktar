@@ -1,12 +1,16 @@
 package com.mycompany.raktar;
 
 import com.mycompany.raktar.currencyXML.Arfolyamok;
+import com.mycompany.raktar.model.Price;
 import com.mycompany.raktar.model.Warehouse;
 import java.io.*;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
+
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.Unmarshaller;
 import javafx.application.Application;
@@ -20,10 +24,15 @@ import javafx.stage.Stage;
  * JavaFX App
  */
 public class App extends Application {
-    private static final String serFileName = "warehouse.ser";
+    private static final String serWHFileName = "warehouse.ser";
+    private static final String serCurrencyFileName = "preferred_currency.ser";
     private static Scene scene;
     static Warehouse wh = null;
     static Arfolyamok arfolyamok;
+    static String preferredCurrency;
+    static BigDecimal HUFtoUSD=BigDecimal.ONE;
+    static BigDecimal HUFtoEUR=BigDecimal.ONE;
+    static BigDecimal HUFtoGBP=BigDecimal.ONE;
     static Stage s;
     static HomeController mainController = null;
 
@@ -47,24 +56,35 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        currencyUpdater();
         try (
-                FileInputStream fileIn = new FileInputStream(serFileName);
-                ObjectInputStream in = new ObjectInputStream(fileIn)
+                FileInputStream whFileIn = new FileInputStream(serWHFileName);
+                ObjectInputStream whIn = new ObjectInputStream(whFileIn)
         )
         {
-            App.wh = (Warehouse) in.readObject();
+            App.wh = (Warehouse) whIn.readObject();
         }
         catch (IOException | ClassNotFoundException e)
         {
             App.wh = new Warehouse();
+        }
+
+        try (
+                FileInputStream currencyFileIn = new FileInputStream(serCurrencyFileName);
+                ObjectInputStream currencyIn = new ObjectInputStream(currencyFileIn)
+        )
+        {
+            App.preferredCurrency = currencyIn.readObject().toString();
+        }
+        catch (IOException | ClassNotFoundException e)
+        {
+            App.preferredCurrency = "HUF";
         }
         launch();
     }
 
     public static void serialization(Warehouse wh) {
         try (
-                FileOutputStream fileOut = new FileOutputStream(serFileName);
+                FileOutputStream fileOut = new FileOutputStream(serWHFileName);
                 ObjectOutputStream out = new ObjectOutputStream(fileOut)
         )
         {
@@ -74,43 +94,17 @@ public class App extends Application {
         {
             System.err.print(e.getMessage());
         }
+        try (
+                FileOutputStream fileOut = new FileOutputStream(serCurrencyFileName);
+                ObjectOutputStream out = new ObjectOutputStream(fileOut)
+        )
+        {
+            out.writeObject(App.preferredCurrency);
+        }
+        catch (IOException e)
+        {
+            System.err.print(e.getMessage());
+        }
     }
 
-    public static void currencyUpdater() {
-        InputStream in = null;
-        try
-        {
-            //XML file letöltése a napiarfolyam.hu-tól
-            in = new URL("http://api.napiarfolyam.hu/?bank=mnb").openStream();
-            Files.copy(in, Paths.get("arfolyamok.xml"), StandardCopyOption.REPLACE_EXISTING);
-        }
-        catch (Exception e)
-        {
-        }
-
-        try
-        {
-            //XML adatok betöltése
-            File file = new File("arfolyamok.xml");
-            JAXBContext jaxbContext = JAXBContext.newInstance(Arfolyamok.class);
-
-            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            arfolyamok = (Arfolyamok) jaxbUnmarshaller.unmarshal(file);
-        }
-        catch (Exception e)
-        {
-        }
-
-        // Hosszabb megoldás csak a letöltésre:
-        /*try (BufferedInputStream in = new BufferedInputStream(new URL("http://api.napiarfolyam.hu/?bank=mnb").openStream());
-             FileOutputStream fileOutputStream = new FileOutputStream("arfolyamok.xml")) {
-            byte dataBuffer[] = new byte[1024];
-            int bytesRead;
-            while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
-                fileOutputStream.write(dataBuffer, 0, bytesRead);
-            }
-        } catch (Exception e) {
-            // handle exception
-        }*/
-    }
 }

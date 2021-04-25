@@ -5,9 +5,11 @@
  */
 package com.mycompany.raktar.model;
 
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 /**
@@ -20,7 +22,9 @@ public class Goods implements java.io.Serializable{
     private String description="";
 
     private Stock stock = new Stock();
-    private Price price = new Price();
+    private Price originalPrice = new Price();
+    private Price displayedPrice = new Price();
+
 
     public Goods(String name){
         this.name = name;
@@ -37,7 +41,8 @@ public class Goods implements java.io.Serializable{
         this.setVendor(vendor);
         this.setDescription(description);
         this.setStock(stock);
-        this.setPrice(price);
+        this.setOriginalprice(price);
+        this.setDisplayedprice(price);
     }
 
     public static void numericValidation(TextField field) {
@@ -50,25 +55,53 @@ public class Goods implements java.io.Serializable{
                     return c;
                 if (newText.contains(" "))   // nem tartalmazhat space-t
                     return null;
-                if (newText.length() == 10)  // maximális szám: 999 999 999 vagy 999 999 99.9
-                    return null;
-                if (newText.contains("-"))   // nem tartalmazhat mínuszjelet
-                    return null;
                 if (newChar.equals(","))
                 {
                     c.setText(".");          // ',' helyett '.' jelenjen meg
                     newText = c.getControlNewText();
                 }
+                if (newText.replace(".","").length() == 12)  // maximális szám limit (árfolyamátváltás során is kompatibilis)
+                    return null;
+                if (newText.contains("-"))   // nem tartalmazhat mínuszjelet
+                    return null;
                 try
                 {
-                    Integer.parseInt(newText.replace(".", ""));   // 'd' és 'f' Float szerint még elfogadott
-                    Float.parseFloat(newText);
+                    Integer.parseInt(newText.replace(".", "").replace(" ",""));   // 'd' és 'f' Float szerint még elfogadott
+                    new BigDecimal(newText.replace(" ",""));
                     return c;
                 }
                 catch (NumberFormatException e)
                 {
                 }
                 return null;
+            }
+            return c;
+        }));
+    }
+
+    public static void textValidation(TextField field) {
+        field.setTextFormatter(new TextFormatter<>(c -> {
+            if (c.isContentChange())
+            {
+                String newText = c.getControlNewText();
+                if (newText.length() == 0)   // ne nézze tovább, ha üresen marad a szöveg (pl. csak belekattintottál)
+                    return c;
+                if (newText.length() > 45)   // karakterlimit: 45
+                    return null;
+            }
+            return c;
+        }));
+    }
+
+    public static void descValidation(TextArea field) {
+        field.setTextFormatter(new TextFormatter<>(c -> {
+            if (c.isContentChange())
+            {
+                String newText = c.getControlNewText();
+                if (newText.length() == 0)   // ne nézze tovább, ha üresen marad a szöveg (pl. csak belekattintottál)
+                    return c;
+                if (newText.length() > 200)   // karakterlimit: 200
+                    return null;
             }
             return c;
         }));
@@ -90,8 +123,12 @@ public class Goods implements java.io.Serializable{
         return stock;
     }
 
-    public Price getPrice() {
-        return price;
+    public Price getOriginalPrice() {
+        return originalPrice;
+    }
+
+    public Price getDisplayedPrice() {
+        return displayedPrice;
     }
     
     public void setVendor(String vendor) {
@@ -106,8 +143,12 @@ public class Goods implements java.io.Serializable{
         this.stock = stock;
     }
 
-    public void setPrice(Price price) {
-        this.price = price;
+    public void setOriginalprice(Price originalprice) {
+        this.originalPrice = originalprice;
+    }
+
+    public void setDisplayedprice(Price displayedprice) {
+        this.displayedPrice = displayedprice;
     }
 
     @Override
@@ -142,7 +183,7 @@ public class Goods implements java.io.Serializable{
                "Gyártó: " + vendor + ", " + 
                "Leírás: " + description + ", " + 
                "Készlet: " + stock + ", " +
-               "Ár: " + price + " / " + stock.getUnit() + ".";
+               "Ár: " + displayedPrice + " / " + stock.getUnit() + ".";
     }   
     
 }

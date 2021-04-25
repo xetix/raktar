@@ -63,7 +63,7 @@ public class DelCategoryController implements Initializable {
     @FXML
     public void changeCategory() {
         delBtn.setDisable(false);
-        delBtn.requestFocus();
+        //delBtn.requestFocus();        //megnehezíti a billentyűzettel való kezelést, ha nem a legelsőt szeretném választani
     }
 
     @FXML

@@ -10,6 +10,7 @@ import com.mycompany.raktar.model.Category;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.mycompany.raktar.model.Goods;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,6 +37,7 @@ public class NewCategoryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         addBtn.setDisable(true);
+        Goods.textValidation(newCategoryName);
     }
 
     @FXML

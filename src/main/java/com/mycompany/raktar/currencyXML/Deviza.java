@@ -9,12 +9,16 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Deviza {
     @XmlElement(name = "item")
-    private List<Item> item;
+    private List<Item> items;
 
     public Deviza() {}
 
     public Deviza(List<Item> item) {
         super();
-        this.item = item;
+        this.items = items;
+    }
+
+    public List<Item> getItems() {
+        return items;
     }
 }

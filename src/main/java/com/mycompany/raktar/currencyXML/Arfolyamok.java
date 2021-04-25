@@ -17,4 +17,8 @@ public class Arfolyamok {
         super();
         this.deviza=deviza;
     }
+
+    public Deviza getDeviza() {
+        return deviza;
+    }
 }

@@ -61,12 +61,12 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="newItemStock" minWidth="85.0" onKeyTyped="#keyPressed" prefWidth="85.0" promptText="Készlet">
+                  <TextField fx:id="newItemStock" minWidth="90.0" onKeyTyped="#keyPressed" prefWidth="90.0" promptText="Készlet">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </TextField>
-                  <ComboBox fx:id="newItemStockUnit" minWidth="100.0" prefWidth="100.0" />
+                  <ComboBox fx:id="newItemStockUnit" minWidth="105.0" prefWidth="105.0" />
                </children>
                <VBox.margin>
                   <Insets bottom="15.0" />
@@ -79,12 +79,12 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="newItemPrice" minWidth="85.0" onKeyTyped="#keyPressed" prefWidth="85.0" promptText="Egységár">
+                  <TextField fx:id="newItemPrice" minWidth="90.0" onKeyTyped="#keyPressed" prefWidth="90.0" promptText="Egységár">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </TextField>
-                  <ComboBox fx:id="newItemPriceCurrency" minWidth="65.0" prefWidth="65.0" />
+                  <ComboBox fx:id="newItemPriceCurrency" minWidth="70.0" prefWidth="70.0" />
                </children>
                <VBox.margin>
                   <Insets bottom="15.0" />

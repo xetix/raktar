@@ -95,17 +95,17 @@
             </TextArea>
             <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="stockNewValueLbl" alignment="BOTTOM_LEFT" contentDisplay="RIGHT" disable="true" minWidth="70.0" prefWidth="70.0" text="* Készlet:">
+                  <Label fx:id="stockNewValueLbl" alignment="BOTTOM_LEFT" contentDisplay="RIGHT" disable="true" minWidth="65.0" prefWidth="65.0" text="* Készlet:">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="stockNewValue" disable="true" minWidth="85.0" onKeyTyped="#keyPressed" prefWidth="85.0" promptText="Készlet">
+                  <TextField fx:id="stockNewValue" disable="true" minWidth="90.0" onKeyTyped="#keyPressed" prefWidth="90.0" promptText="Készlet">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </TextField>
-                  <ComboBox fx:id="itemStockUnit" disable="true" minWidth="100.0" onAction="#fieldValidator" prefWidth="100.0" />
+                  <ComboBox fx:id="itemStockUnit" disable="true" minWidth="106.0" onAction="#fieldValidator" prefWidth="106.0" />
                </children>
                <VBox.margin>
                   <Insets bottom="15.0" />
@@ -113,17 +113,17 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="212.0" prefHeight="25.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="priceNewValueLbl" contentDisplay="RIGHT" disable="true" minWidth="70.0" prefWidth="70.0" text="* Egységár:">
+                  <Label fx:id="priceNewValueLbl" contentDisplay="RIGHT" disable="true" minWidth="65.0" prefWidth="65.0" text="* Egységár:">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="priceNewValue" disable="true" minWidth="85.0" onKeyTyped="#keyPressed" prefWidth="85.0" promptText="Egységár">
+                  <TextField fx:id="priceNewValue" disable="true" minWidth="90.0" onKeyTyped="#keyPressed" prefWidth="90.0" promptText="Egységár">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </TextField>
-                  <ComboBox fx:id="itemPriceCurrency" disable="true" minWidth="65.0" onAction="#fieldValidator" prefWidth="65.0" />
+                  <ComboBox fx:id="itemPriceCurrency" disable="true" minWidth="70.0" onAction="#fieldValidator" prefWidth="70.0" />
                </children>
                <VBox.margin>
                   <Insets bottom="15.0" />

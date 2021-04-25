@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.Collections;
 import java.util.ResourceBundle;
 
+import com.mycompany.raktar.model.Goods;
 import com.mycompany.raktar.model.Stock;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -82,7 +83,8 @@ public class EditCategoryController implements Initializable {
         newNameLabel.setDisable(false);
         newCategoryName.setDisable(false);
         newCategoryName.setText(itemCategory.getValue());
-        newCategoryName.requestFocus();
+        Goods.textValidation(newCategoryName);
+        //newCategoryName.requestFocus();        //megnehezíti a billentyűzettel való kezelést, ha nem a legelsőt szeretném választani
     }
 
     @FXML
