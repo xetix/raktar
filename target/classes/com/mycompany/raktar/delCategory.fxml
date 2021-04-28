@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" onKeyTyped="#keyPressed" prefHeight="160.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.raktar.DelCategoryController">
+   <children>
+      <VBox prefHeight="100.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-6.0">
+         <children>
+            <Label text="Törlendő kategória:">
+               <VBox.margin>
+                  <Insets left="15.0" top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="itemCategory" onAction="#changeCategory" prefWidth="351.0" promptText="Válasszon kategóriát...">
+               <VBox.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="3.0" />
+               </VBox.margin>
+            </ComboBox>
+            <Label alignment="TOP_CENTER" prefHeight="42.0" prefWidth="357.0" text="Figyelem! A kategória törlésével az összes ezen kategóriába tartozó termék is törlésre kerül!" textAlignment="CENTER" wrapText="true">
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <HBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="322.0">
+               <children>
+                  <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#cancel" text="Mégsem">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="delBtn" mnemonicParsing="false" onAction="#del" prefWidth="62.0" text="Törlés">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
