@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -13,28 +12,30 @@
 <?import javafx.scene.control.TreeTableColumn?>
 <?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.raktar.HomeController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="980.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.raktar.HomeController">
    <children>
-      <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <MenuBar prefHeight="0.0" prefWidth="980.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
-          <Menu mnemonicParsing="false" text="Kategóriák">
+          <Menu mnemonicParsing="false" styleClass="menu" text="Kategóriák">
             <items>
               <MenuItem fx:id="newCatBtn" mnemonicParsing="false" onAction="#openNewCatDialog" text="Új" />
                   <MenuItem fx:id="editCatMenuItem" mnemonicParsing="false" onAction="#openEditCatDialog" text="Átnevezés" />
                   <MenuItem fx:id="delCatMenuItem" mnemonicParsing="false" onAction="#openDelCatDialog" text="Törlés" />
             </items>
           </Menu>
-          <Menu fx:id="goodsMenu" mnemonicParsing="false" text="Termékek">
+          <Menu fx:id="goodsMenu" mnemonicParsing="false" styleClass="menu" text="Termékek">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#openNewGoodsDialog" text="Új" />
                   <MenuItem fx:id="editGoodsMenuItem" mnemonicParsing="false" onAction="#openEditGoodsDialog" text="Szerkesztés" />
                   <MenuItem fx:id="delGoodsMenuItem" mnemonicParsing="false" onAction="#openDelGoodsDialog" text="Törlés" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="Árfolyam">
+            <Menu mnemonicParsing="false" styleClass="menu" text="Árfolyam">
                <items>
                   <RadioMenuItem fx:id="hufRadioMenuItem" mnemonicParsing="false" onAction="#currencyHUFSelected" text="HUF">
                      <toggleGroup>
@@ -49,59 +50,65 @@
             </Menu>
         </menus>
       </MenuBar>
-      <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" minViewportHeight="520.0" minViewportWidth="785.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+      <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" minViewportHeight="520.0" minViewportWidth="785.0" prefWidth="980.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
         <content>
           <AnchorPane>
                <children>
-                  <TreeTableView fx:id="out" editable="true" focusTraversable="false" showRoot="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TreeTableView fx:id="out" editable="true" focusTraversable="false" prefHeight="533.6" prefWidth="978.4" showRoot="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                       <placeholder>
                           <Label text="Az adatbázis üres" />
                       </placeholder>
                       <columns>
-                      <TreeTableColumn fx:id="name" editable="false" minWidth="50.0" prefWidth="200.0" text="Név" />
-                      <TreeTableColumn fx:id="vendor" editable="false" minWidth="50.0" prefWidth="200.0" text="Gyártó" />
-                        <TreeTableColumn fx:id="description" editable="false" minWidth="50.0" prefWidth="215.0" text="Leírás" />
-                        <TreeTableColumn editable="false" minWidth="180.0" prefWidth="180.0" text="Készlet">
+                      <TreeTableColumn fx:id="name" editable="false" minWidth="50.0" prefWidth="200.0" styleClass="column-bg" text="Név" />
+                      <TreeTableColumn fx:id="vendor" editable="false" minWidth="50.0" prefWidth="200.0" styleClass="column-bg" text="Gyártó" />
+                        <TreeTableColumn fx:id="description" editable="false" minWidth="50.0" prefWidth="215.0" styleClass="column-bg" text="Leírás" />
+                        <TreeTableColumn fx:id="keszlet" editable="false" minWidth="90.0" prefWidth="180.0" styleClass="column-bg" text="Készlet">
                            <columns>
-                              <TreeTableColumn fx:id="stock" editable="false" minWidth="80.0" prefWidth="90.0" />
-                              <TreeTableColumn fx:id="unit" editable="false" minWidth="80.0" prefWidth="90.0" />
+                              <TreeTableColumn fx:id="stock" editable="false" minWidth="80.0" prefWidth="90.0" styleClass="column-bg" />
+                              <TreeTableColumn fx:id="unit" editable="false" minWidth="80.0" prefWidth="90.0" styleClass="column-bg" />
                            </columns>
                         </TreeTableColumn>
-                        <TreeTableColumn editable="false" minWidth="140.0" prefWidth="190.0" text="Egységár">
+                        <TreeTableColumn editable="false" minWidth="90.0" prefWidth="180.0" styleClass="column-bg" text="Egységár">
                            <columns>
-                              <TreeTableColumn fx:id="price" editable="false" minWidth="80.0" prefWidth="90.0" />
-                              <TreeTableColumn fx:id="currency" editable="false" minWidth="50.0" prefWidth="90.0" />
+                              <TreeTableColumn fx:id="price" editable="false" minWidth="80.0" prefWidth="90.0" styleClass="column-bg" />
+                              <TreeTableColumn fx:id="currency" editable="false" minWidth="80.0" prefWidth="90.0" styleClass="column-bg" />
                            </columns>
                         </TreeTableColumn>
                       </columns>
+                     <columnResizePolicy>
+                        <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                   </TreeTableView>
                </children>
             </AnchorPane>
         </content>
       </ScrollPane>
-      <ButtonBar layoutY="560.0" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #94989C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <buttons>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="980.0">
-               <children>
-                  <Label fx:id="currencyInfo" prefWidth="750.0" textFill="WHITE">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                     <font>
-                        <Font name="System Italic" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label text="Warehouse - SFM Projekt 2021" textFill="WHITE">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                     <font>
-                        <Font name="System Bold Italic" size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-         </buttons>
-      </ButtonBar>
+      <GridPane alignment="CENTER_LEFT" layoutY="560.0" prefHeight="40.0" prefWidth="980.0" styleClass="footer" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="currencyInfo" prefHeight="38.0" prefWidth="510.0" styleClass="footer" textFill="WHITE">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label styleClass="footer" text="Warehouse - SFM Projekt 2021" textAlignment="RIGHT" textFill="WHITE" GridPane.columnIndex="1">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>

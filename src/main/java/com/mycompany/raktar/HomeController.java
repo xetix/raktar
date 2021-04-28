@@ -184,7 +184,6 @@ public class HomeController implements Initializable {
         );
         currency.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getValue().getDisplayedPrice().getCurrency()));
 
-
         currencyUpdater();
         switch (App.preferredCurrency)
         {
