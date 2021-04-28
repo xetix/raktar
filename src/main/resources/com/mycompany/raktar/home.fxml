@@ -49,11 +49,11 @@
             </Menu>
         </menus>
       </MenuBar>
-      <ScrollPane fitToHeight="true" fitToWidth="true" minViewportHeight="520.0" minViewportWidth="785.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+      <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" minViewportHeight="520.0" minViewportWidth="785.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
         <content>
-          <AnchorPane onKeyTyped="#noKeyError">
+          <AnchorPane>
                <children>
-                  <TreeTableView fx:id="out" editable="true" showRoot="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TreeTableView fx:id="out" editable="true" focusTraversable="false" showRoot="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                       <placeholder>
                           <Label text="Az adatbázis üres" />
                       </placeholder>

@@ -1,18 +1,10 @@
 package com.mycompany.raktar;
 
 import com.mycompany.raktar.currencyXML.Arfolyamok;
-import com.mycompany.raktar.model.Price;
 import com.mycompany.raktar.model.Warehouse;
 import java.io.*;
 import java.math.BigDecimal;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.List;
 
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.Unmarshaller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

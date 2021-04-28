@@ -5,8 +5,6 @@
  */
 package com.mycompany.raktar.model;
 
-import com.mycompany.raktar.NewGoodsController;
-
 import java.math.BigDecimal;
 
 /**
