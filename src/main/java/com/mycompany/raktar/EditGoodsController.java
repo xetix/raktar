@@ -81,7 +81,6 @@ public class EditGoodsController implements Initializable {
             Collections.sort(list);
             itemName.setItems(list);
             itemName.getSelectionModel().selectFirst();
-
         }
         //itemName.requestFocus();        //megnehezíti a billentyűzettel való kezelést, ha nem a legelsőt szeretném választani
     }
