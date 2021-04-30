@@ -1,28 +1,115 @@
 /*
 USED COLORS
+#5f4f49 - dark dark brown (for labels)
 #8c7b75 - dark brown
 #bcaaa4- brown
-#efdcd5 - light brown (bit pinky)
-#d7ccc8 - alternate light brown
-
+#efdcd5 - light brown (bit pinky) (for text-field prompt text)
+#d7ccc8 - alternate light brown (for background)
+#fcefea - light light brown (for text "brown" highlight)
 */
+
+* {
+    -fx-accent: #8c7b75;
+    -fx-focus-color: #8c7b75;
+}
+
+VBox {
+	-fx-background-color: #d7ccc8;
+}
 
 .root {
     -fx-accent: #d7ccc8;
     -fx-focus-color: #d7ccc8;
 }
 
+.radio-menu-item
+{
+    -fx-mark-color: #fcefea ;
+    -fx-focused-mark-color: #fcefea ;
+}
+
+/* ------------------------------------------------------------------------------------- */
+/**	BUTTONS **/
+/* ------------------------------------------------------------------------------------- */
+
+.button {
+	-fx-background-color: #bcaaa4;
+	-fx-border-width: 2px;
+	-fx-border-color: #bcaaa4;
+	-fx-border-radius: 3px;
+	-fx-text-fill: #5f4f49;
+}
+
+.button:focused {
+	-fx-border-color: #8c7b75;
+}
+
+.button:hover {
+	-fx-border-color: #8c7b75;
+}
 
 
-/****** MENUBAR SECTION ******/
+/* ------------------------------------------------------------------------------------- */
+/**	COMBO-BOXES **/
+/* ------------------------------------------------------------------------------------- */
+
+.combo-box-base .text {
+	-fx-fill: #5f4f49;
+}
+
+.combo-box .cell {
+	-fx-background-color: #bcaaa4;
+	-fx-border-color: #bcaaa4;
+}
+
+.combo-box .cell:hover/* , .combo-box .cell:selected*/ {
+-fx-background-color: #8c7b75;
+}
+
+.combo-box {
+	-fx-background-color: #bcaaa4;
+	-fx-border-width: 1px;
+	-fx-border-color: #bcaaa4;
+	-fx-border-radius: 3px;
+}
+
+.combo-box:focused {
+	-fx-border-color: #8c7b75;
+}
+
+
+/* ------------------------------------------------------------------------------------- */
+/**	FOOTER **/
+/* ------------------------------------------------------------------------------------- */
+
+.footer ,
+.footer .label {
+	-fx-text-fill: #d7ccc8;
+	-fx-background-color: #8c7b75;
+}
+
+
+/* ------------------------------------------------------------------------------------- */
+/**	LABELS **/
+/* ------------------------------------------------------------------------------------- */
+
+.label {
+	-fx-text-fill: #5f4f49;
+}
+
+
+
+/* ------------------------------------------------------------------------------------- */
+/**	MENUBAR **/
+/* ------------------------------------------------------------------------------------- */
 
 
 /* VARIABLE DEFINITIONS: Only these 4 variables have to be adjusted, the rest is copy-paste */
 * {
     -fx-my-menu-color: #8c7b75;                  /* Change according to your needs */
     -fx-my-menu-color-highlighted: #bcaaa4;      /* Change according to your needs */
-    -fx-my-menu-font-color: white;             /* Change according to your needs */
-    -fx-my-menu-font-color-highlighted: white; /* Change according to your needs */
+    -fx-my-menu-font-color: #fcefea;             /* Change according to your needs */
+    -fx-my-menu-font-color-highlighted: #fcefea; /* Change according to your needs */
 }
 
 /* MENU BAR + Top-level MENU BUTTONS */
@@ -93,11 +180,96 @@ USED COLORS
 }
 
 
-/****** END OF MENUBAR SECTION ******/
+/* ------------------------------------------------------------------------------------- */
+/**	SCROLLBARS **/
+/* ------------------------------------------------------------------------------------- */
+
+/* The main scrollbar CSS class of ListView */
+.scroll-bar:horizontal ,
+ .scroll-bar:vertical{
+    -fx-background-color:transparent;
+ 
+}
+ 
+/* The increment and decrement button CSS class of scrollbar */
+.increment-button ,.decrement-button {
+    -fx-background-color:transparent;
+	-fx-border-color:derive(#bcaaa4,80%);
+}
+ 
+/* The main scrollbar **track** CSS class  */
+.scroll-bar:horizontal .track ,
+.scroll-bar:vertical .track{
+     -fx-background-color: transparent;
+	 -fx-border-color:derive(#bcaaa4,80%);
+	 -fx-background-radius: 0em;
+}
+ 
+/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color:derive(#8c7b75,90%);
+	-fx-background-insets: 0, 0, 0;
+	-fx-background-radius: 0em;
+}
+ 
+ 
+/* The main scrollbar **track** CSS class on event of "hover" and "pressed" */
+ 
+.scroll-bar:horizontal:hover .track ,
+.scroll-bar:horizontal:pressed .track ,
+.scroll-bar:vertical:hover .track,
+.scroll-bar:vertical:pressed .track{
+     -fx-background-color: derive(#bcaaa4,40%);
+	 -fx-opacity: 0.2;
+	 -fx-background-radius: 0em;
+}
+ 
+/* The main scrollbar **thumb** CSS class on event of "hover" and "pressed" */
+.scroll-bar .thumb:hover,
+.scroll-bar .thumb:pressed{
+    -fx-background-color: derive(#8c7b75,70%);
+}
+ 
+.increment-button:hover ,.decrement-button:hover {
+    -fx-background-color:derive(#bcaaa4,100%);
+	-fx-border-color:derive(#bcaaa4,80%);
+	-fx-padding:3px;
+}
 
 
+/* ------------------------------------------------------------------------------------- */
+/**	TEXT-FIELDS **/
+/* ------------------------------------------------------------------------------------- */
 
-.tree-table-view{
+.text-field ,
+.text-area {
+	-fx-background-color: #bcaaa4;
+	-fx-border-width: 1px;
+	-fx-border-color: #bcaaa4;
+	-fx-border-radius: 3px;
+	-fx-text-fill: #5f4f49;
+	-fx-prompt-text-fill: #efdcd5;
+}
+
+.text-area .content {
+	-fx-background-color: #bcaaa4;
+}
+
+.text-field:focused {
+	-fx-border-color: #8c7b75;
+}
+
+.text-area:focused {
+	-fx-border-color: #8c7b75;
+}
+
+
+/* ------------------------------------------------------------------------------------- */
+/**	TREE-TABLE-VIEW **/
+/* ------------------------------------------------------------------------------------- */
+
+.tree-table-view {
 	-fx-background-color: #d7ccc8;
 }
 
@@ -107,20 +279,24 @@ USED COLORS
 	-fx-background-color: #bcaaa4;
 }
 
+.tree-table-view .column-header .text{
+	-fx-fill: #5f4f49;
+}
+
+
 .tree-table-row-cell {
     -fx-background-color: #d7ccc8;
+}
+
+.tree-table-row-cell .text {
+	-fx-fill: #5f4f49;
 }
 
 .tree-table-row-cell:selected {
     -fx-background-color: #efdcd5;
 }
 
-.column-bg{
+.column-bg {
 	-fx-border-color: #bcaaa4;
 	-fx-border-width: 0px 1px 0px 0px;
-}
-
-.footer {
-	-fx-text-fill: white;
-	-fx-background-color: #8c7b75;
 }

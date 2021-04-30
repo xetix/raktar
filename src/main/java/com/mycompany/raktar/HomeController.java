@@ -71,15 +71,15 @@ public class HomeController implements Initializable {
     private TreeTableColumn<Goods,String> name, vendor, description, stock, unit, price, currency;
 
     public void openNewCatDialog(){
-        this.openNewDialog("newCategory", 95,"Új kategória hozzáadása");
+        this.openNewDialog("newCategory", 123,"Új kategória hozzáadása");
     }
     
     public void openEditCatDialog(){
-        this.openNewDialog("editCategory", 170, "Kategória átnevezése");
+        this.openNewDialog("editCategory", 189, "Kategória átnevezése");
     }
     
     public void openDelCatDialog(){
-        this.openNewDialog("delCategory", 160,"Kategória törlése");
+        this.openNewDialog("delCategory", 175,"Kategória törlése");
     }
     
     public void openNewGoodsDialog(){
@@ -87,11 +87,11 @@ public class HomeController implements Initializable {
     }
 
     public void openEditGoodsDialog(){
-        this.openNewDialog("editGoods", 595,"Termék szerkesztése");
+        this.openNewDialog("editGoods", 600,"Termék szerkesztése");
     }
 
     public void openDelGoodsDialog(){
-        this.openNewDialog("delGoods", 170,"Termék törlése");
+        this.openNewDialog("delGoods", 191,"Termék törlése");
     }
     
     private void openNewDialog(String name, int height, String windowTitle){

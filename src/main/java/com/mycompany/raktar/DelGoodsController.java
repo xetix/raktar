@@ -53,16 +53,20 @@ public class DelGoodsController implements Initializable {
         itemName.setItems(list);
         if (list.size()==0)
         {
-            itemName.setItems(null);
+            list.add("Válasszon terméket...");
+            itemName.setItems(list);
+            itemName.getSelectionModel().selectFirst();
             itemName.setDisable(true);
             delGoodsNameLabel.setDisable(true);
         }
         else
         {
+            itemName.setItems(null);
             itemName.setDisable(false);
             delGoodsNameLabel.setDisable(false);
             Collections.sort(list);
             itemName.setItems(list);
+            itemName.getSelectionModel().selectFirst();
         }
         //itemName.requestFocus();        //megnehezíti a billentyűzettel való kezelést, ha nem a legelsőt szeretném választani
     }

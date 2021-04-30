@@ -12,9 +12,7 @@ import com.mycompany.raktar.model.Stock;
 import com.mycompany.raktar.model.Stock.Unit;
 
 import java.net.URL;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -67,19 +65,23 @@ public class EditGoodsController implements Initializable {
     @FXML
     private void selectedCategory(ActionEvent event) {
         ObservableList<String> list=FXCollections.observableArrayList(App.wh.getCategory(itemCategory.getValue()).getKeys());
-        //itemName.getSelectionModel().clearSelection(); // Válasszon terméket...
         if (list.size()==0)
         {
-            itemName.setItems(null);
+            list.add("Válasszon terméket...");
+            itemName.setItems(list);
+            itemName.getSelectionModel().selectFirst();
             itemName.setDisable(true);
             itemNameLbl.setDisable(true);
         }
         else
         {
+            itemName.setItems(null);
             itemName.setDisable(false);
             itemNameLbl.setDisable(false);
             Collections.sort(list);
             itemName.setItems(list);
+            itemName.getSelectionModel().selectFirst();
+
         }
         //itemName.requestFocus();        //megnehezíti a billentyűzettel való kezelést, ha nem a legelsőt szeretném választani
     }
@@ -88,8 +90,7 @@ public class EditGoodsController implements Initializable {
 
     @FXML
     private void selectedItem(ActionEvent event) {
-        selected = App.wh.getCategory(itemCategory.getValue()).getProduct(itemName.getValue());
-        if(selected == null)
+        if (itemName.getValue()==null || itemName.getValue().equals("Válasszon terméket..."))
         {
             itemRename.setText("");
             itemVendorRename.setText("");
@@ -97,6 +98,10 @@ public class EditGoodsController implements Initializable {
             stockNewValue.setText("");
             priceNewValue.setText("");
             newItemCategory.getSelectionModel().clearSelection(); //Kategória
+            List<String> list = new ArrayList<String>();
+            list.add("Kategória");
+            newItemCategory.setItems(FXCollections.observableArrayList(list));
+            newItemCategory.getSelectionModel().selectFirst();
             itemStockUnit.setItems(null);
             itemStockUnit.setValue("Kategória");
             itemStockUnit.getSelectionModel().clearSelection();
@@ -106,19 +111,19 @@ public class EditGoodsController implements Initializable {
             itemPriceCurrency.setItems(null);
             return;
         }
-        if (selected != null)
-            unlockChk.setDisable(false);
+        selected = App.wh.getCategory(itemCategory.getValue()).getProduct(itemName.getValue());
+        unlockChk.setDisable(false);
         ObservableList<String> list=FXCollections.observableArrayList(App.wh.getKeys());
         Collections.sort(list);
         newItemCategory.setItems(list);
         newItemCategory.setValue(itemCategory.getValue());
         //itemStockUnit.setItems(FXCollections.observableArrayList(Arrays.asList(Unit.values())));
-        itemStockUnit.getItems().clear();
-        itemStockUnit.getItems().addAll(Arrays.asList(Unit.values()));
+        itemStockUnit.setItems(null);
+        itemStockUnit.setItems(FXCollections.observableArrayList(Unit.values()));
         itemStockUnit.setValue("" + selected.getStock().getUnit());
         //itemPriceCurrency.setItems(FXCollections.observableArrayList(Arrays.asList(Currency.values())));
-        itemPriceCurrency.getItems().clear();
-        itemPriceCurrency.getItems().addAll(Arrays.asList(Currency.values()));
+        itemPriceCurrency.setItems(null);
+        itemPriceCurrency.setItems(FXCollections.observableArrayList(Currency.values()));
         //itemPriceCurrency.setValue("" + selected.getDisplayedPrice().getCurrency());
         switch (selected.getOriginalPrice().getCurrency())
         {
