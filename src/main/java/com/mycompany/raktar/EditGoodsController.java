@@ -52,14 +52,15 @@ public class EditGoodsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Goods goods = new Goods();
         ObservableList<String> list=FXCollections.observableArrayList(App.wh.getKeys());
         Collections.sort(list);
         itemCategory.setItems(list);
-        Goods.numericValidation(stockNewValue);
-        Goods.numericValidation(priceNewValue);
-        Goods.textValidation(itemRename);
-        Goods.textValidation(itemVendorRename);
-        Goods.descValidation(itemDescriptionUpdate);
+        goods.numericValidation(stockNewValue);
+        goods.numericValidation(priceNewValue);
+        goods.textValidation(itemRename);
+        goods.textValidation(itemVendorRename);
+        goods.descValidation(itemDescriptionUpdate);
     }
 
     @FXML

@@ -80,10 +80,11 @@ public class EditCategoryController implements Initializable {
 
     @FXML
     public void changeCategory() {
+        Goods goods = new Goods();
         newNameLabel.setDisable(false);
         newCategoryName.setDisable(false);
         newCategoryName.setText(itemCategory.getValue());
-        Goods.textValidation(newCategoryName);
+        goods.textValidation(newCategoryName);
         //newCategoryName.requestFocus();        //megnehezíti a billentyűzettel való kezelést, ha nem a legelsőt szeretném választani
     }
 

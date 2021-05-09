@@ -66,15 +66,17 @@ public class NewGoodsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        Goods goods = new Goods();
         ObservableList<String> list=FXCollections.observableArrayList(App.wh.getKeys());
         Collections.sort(list);
         newItemCategory.setItems(list);
-        Goods.textValidation(newItemName);
-        Goods.textValidation(newItemVendor);
-        Goods.descValidation(newItemDescription);
-        Goods.numericValidation(newItemStock);
+        goods.textValidation(newItemName);
+        goods.textValidation(newItemVendor);
+        goods.descValidation(newItemDescription);
+        goods.numericValidation(newItemStock);
         newItemStockUnit.getItems().addAll(Arrays.asList(Unit.values()));
-        Goods.numericValidation(newItemPrice);
+        goods.numericValidation(newItemPrice);
         newItemPriceCurrency.getItems().addAll(Arrays.asList(Currency.values()));
         newItemStockUnit.getSelectionModel().selectFirst();
         switch (App.preferredCurrency)

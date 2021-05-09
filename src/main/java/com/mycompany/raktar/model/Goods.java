@@ -30,13 +30,16 @@ public class Goods implements java.io.Serializable{
         this.name = name;
     }
 
+    public Goods(){}
+
     public Goods(
         String name, 
         String vendor, 
         String description, 
         Stock stock,
         Price price
-    ) {
+    )
+    {
         this.name = name;
         this.setVendor(vendor);
         this.setDescription(description);
@@ -45,7 +48,7 @@ public class Goods implements java.io.Serializable{
         this.setDisplayedprice(price);
     }
 
-    public static void numericValidation(TextField field) {
+    public void numericValidation(TextField field) {
         field.setTextFormatter(new TextFormatter<>(c -> {
             if (c.isContentChange())
             {
@@ -64,22 +67,24 @@ public class Goods implements java.io.Serializable{
                     return null;
                 if (newText.contains("-"))   // nem tartalmazhat mínuszjelet
                     return null;
-                try
-                {
+               try
+                 {
                     Integer.parseInt(newText.replace(".", "").replace(" ",""));   // 'd' és 'f' Float szerint még elfogadott
                     new BigDecimal(newText.replace(" ",""));
                     return c;
                 }
                 catch (NumberFormatException e)
                 {
+                    System.out.println(e.getMessage());
+                    return null;
                 }
-                return null;
+               // return null;
             }
             return c;
         }));
     }
 
-    public static void textValidation(TextField field) {
+    public void textValidation(TextField field) {
         field.setTextFormatter(new TextFormatter<>(c -> {
             if (c.isContentChange())
             {
@@ -93,7 +98,7 @@ public class Goods implements java.io.Serializable{
         }));
     }
 
-    public static void descValidation(TextArea field) {
+    public void descValidation(TextArea field) {
         field.setTextFormatter(new TextFormatter<>(c -> {
             if (c.isContentChange())
             {

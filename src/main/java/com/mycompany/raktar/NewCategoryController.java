@@ -36,8 +36,9 @@ public class NewCategoryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Goods goods = new Goods();
         addBtn.setDisable(true);
-        Goods.textValidation(newCategoryName);
+        goods.textValidation(newCategoryName);
     }
 
     @FXML
