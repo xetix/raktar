@@ -188,7 +188,6 @@ VBox {
 .scroll-bar:horizontal ,
  .scroll-bar:vertical{
     -fx-background-color:transparent;
- 
 }
  
 /* The increment and decrement button CSS class of scrollbar */
@@ -201,14 +200,14 @@ VBox {
 .scroll-bar:horizontal .track ,
 .scroll-bar:vertical .track{
      -fx-background-color: transparent;
-	 -fx-border-color:derive(#bcaaa4,80%);
+	 -fx-border-color:derive(#8c7b75,90%);
 	 -fx-background-radius: 0em;
 }
  
 /* The main scrollbar **thumb** CSS class which we drag every time (movable) */
 .scroll-bar:horizontal .thumb,
 .scroll-bar:vertical .thumb {
-    -fx-background-color:derive(#8c7b75,90%);
+    -fx-background-color:derive(#bcaaa4,20%);
 	-fx-background-insets: 0, 0, 0;
 	-fx-background-radius: 0em;
 }

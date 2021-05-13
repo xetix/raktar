@@ -75,7 +75,7 @@ public class Goods implements java.io.Serializable{
                 }
                 catch (NumberFormatException e)
                 {
-                    System.out.println(e.getMessage());
+                    //System.out.println(e.getMessage());
                     return null;
                 }
                // return null;

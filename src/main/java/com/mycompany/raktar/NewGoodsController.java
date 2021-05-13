@@ -5,6 +5,7 @@
  */
 package com.mycompany.raktar;
 
+import com.mycompany.raktar.model.Category;
 import com.mycompany.raktar.model.Goods;
 import com.mycompany.raktar.model.Price;
 import com.mycompany.raktar.model.Price.Currency;
@@ -14,6 +15,7 @@ import com.mycompany.raktar.model.Stock.Unit;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -21,10 +23,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
@@ -140,6 +139,10 @@ public class NewGoodsController implements Initializable {
                     stock,
                     price
             );
+
+            Goods check=App.wh.getCategory(this.newItemCategory.getValue()).getProduct(g.getName());
+            if (check != null && check.getVendor().toLowerCase(Locale.ROOT).equals(g.getVendor().toLowerCase(Locale.ROOT))) throw new IllegalArgumentException("Létező termék!");
+
             App.wh.addGoods(this.newItemCategory.getValue(), g);
             App.mainController.refresh();
             exitButtonOnAction(event);
